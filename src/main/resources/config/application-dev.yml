@@ -26,9 +26,10 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/smartNews
-        username: smartNews
-        password:
+
+        url: jdbc:postgresql://localhost:5433/postgres
+        username: postgres
+        password: admin
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

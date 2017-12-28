@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "dateEnvoie",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "log",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171228104733",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "tache",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}
