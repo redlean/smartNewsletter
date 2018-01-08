@@ -1,5 +1,5 @@
 # ===================================================================
-# Spring Boot configuration for the "dev" profile.
+# Spring Boot configuration for the "prod" profile.
 #
 # This configuration overrides the application.yml file.
 #
@@ -14,48 +14,35 @@
 # ===================================================================
 
 spring:
-    profiles:
-        active: dev
-        include: swagger
     devtools:
         restart:
-            enabled: true
+            enabled: false
         livereload:
-            enabled: false # we use gulp + BrowserSync for livereload
-    jackson:
-        serialization.indent_output: true
+            enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-        url: jdbc:postgresql://ec2-23-21-164-107.compute-1.amazonaws.com/ddg56j42u9seqa?user=czteqezjpxxmdo&password=ffbc994c49f27064859be11da1111972176673ebfcca472b38f7a64ff6eb1209&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-        databaseName:
-        serverName:
-        username: czteqezjpxxmdo
-        password: ffbc994c49f27064859be11da1111972176673ebfcca472b38f7a64ff6eb1209
-#        url: jdbc:postgresql://localhost:5433/postgres
-#        username: postgres
-#        password: admin
+        url: jdbc:postgresql://localhost:5432/smartNews
+        username: smartNews
+        password:
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
-        show-sql: true
+        show-sql: false
         properties:
             hibernate.id.new_generator_mappings: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
+            hibernate.generate_statistics: false
     mail:
         host: localhost
         port: 25
         username:
         password:
-    messages:
-        cache-seconds: 1
     thymeleaf:
-        cache: false
+        cache: true
 
 liquibase:
-    contexts: dev
+    contexts: prod
 
 # ===================================================================
 # To enable SSL, generate a certificate using:
@@ -67,7 +54,7 @@ liquibase:
 # Then, modify the server.ssl properties so your "server" configuration looks like:
 #
 # server:
-#    port: 8443
+#    port: 443
 #    ssl:
 #        key-store: keystore.p12
 #        key-store-password: <your-password>
@@ -76,6 +63,10 @@ liquibase:
 # ===================================================================
 server:
     port: 8080
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        min-response-size: 1024
 
 # ===================================================================
 # JHipster specific properties
@@ -86,32 +77,26 @@ server:
 jhipster:
     http:
         version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
-    # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
-    cors:
-        allowed-origins: "*"
-        allowed-methods: "*"
-        allowed-headers: "*"
-        exposed-headers: "Authorization"
-        allow-credentials: true
-        max-age: 1800
+        cache: # Used by the CachingHttpHeadersFilter
+            timeToLiveInDays: 1461
     security:
         authentication:
             jwt:
-                secret: my-secret-token-to-change-in-production
+                secret: 70c60b4fd5af77e96dca1ae1db45fada73d05032
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: smartNews@localhost
-        base-url: http://127.0.0.1:8080
+        base-url: http://my-server-url-to-change # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
-        graphite: # Use the "graphite" Maven profile to have the Graphite dependencies
+        graphite:
             enabled: false
             host: localhost
             port: 2003
             prefix: smartNews
-        prometheus: # Use the "prometheus" Maven profile to have the Prometheus dependencies
+        prometheus:
             enabled: false
             endpoint: /prometheusMetrics
         logs: # Reports Dropwizard metrics in the logs

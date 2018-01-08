@@ -1,0 +1,41 @@
+
+<div *ngIf="email">
+    <h2><span jhiTranslate="smartNewsApp.email.detail.title">Email</span> {{email.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smartNewsApp.email.destinataires">Destinataires</span></dt>
+        <dd>
+            <span>{{email.destinataires}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.email.expediteur">Expediteur</span></dt>
+        <dd>
+            <span>{{email.expediteur}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.email.objet">Objet</span></dt>
+        <dd>
+            <span>{{email.objet}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.email.contenu">Contenu</span></dt>
+        <dd>
+            <span>{{email.contenu}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.email.pieceJoint">Piece Joint</span></dt>
+        <dd>
+            <span>{{email.pieceJoint}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'email/'+ email.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
