@@ -6,13 +6,12 @@ import { SmartNewsPlanificationEmailsModule } from './planification-emails/plani
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { FileUploadModule } from 'ng2-file-upload';
 @NgModule({
     imports: [
         SmartNewsEmailModule,
         SmartNewsPlanificationEmailsModule,
-        BrowserModule, CKEditorModule, FormsModule, FileUploadModule
+        BrowserModule, FormsModule, FileUploadModule
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

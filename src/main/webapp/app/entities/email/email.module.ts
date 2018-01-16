@@ -1,7 +1,6 @@
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA, Directive} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {CKEditorModule} from 'ng2-ckeditor';
 import {BrowserModule} from '@angular/platform-browser';
 import { SmartNewsSharedModule } from '../../shared';
 
@@ -30,7 +29,7 @@ const ENTITY_STATES = [
     imports: [
         SmartNewsSharedModule,
         RouterModule.forChild(ENTITY_STATES),
-        BrowserModule, CKEditorModule, FormsModule,
+        BrowserModule, FormsModule,
     ],
     declarations: [
         EmailComponent,
