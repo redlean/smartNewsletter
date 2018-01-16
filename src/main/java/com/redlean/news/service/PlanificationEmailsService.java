@@ -31,16 +31,15 @@ import java.util.List;
  */
 @Service
 @Transactional
-@Configuration
-@EnableAsync
+//@Configuration
+//@EnableAsync
 @EnableScheduling
 public class PlanificationEmailsService {
 
     private final Logger log = LoggerFactory.getLogger(PlanificationEmailsService.class);
     private PlanificationEmailsRepository planificationEmailsRepository;
-    public PlanificationEmailsService() {
 
-    }
+
 
     public PlanificationEmailsService(PlanificationEmailsRepository planificationEmailsRepository) {
         this.planificationEmailsRepository = planificationEmailsRepository;
@@ -54,11 +53,10 @@ public class PlanificationEmailsService {
      */
     public PlanificationEmails save(PlanificationEmails planificationEmails) {
         log.debug("Request to save PlanificationEmails : {}", planificationEmails);
-        //  SendMailInDate(planificationEmails);
         return planificationEmailsRepository.save(planificationEmails);
     }
 
-@Scheduled(cron = "0 0 10 * * ?")
+   @Scheduled(cron = "0 0 10 * * ?")
     public void SendMailInDate() {
         List<PlanificationEmails> ListePlanif = planificationEmailsRepository.findAll();
         System.out.println(ListePlanif);

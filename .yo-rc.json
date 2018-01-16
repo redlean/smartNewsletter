@@ -34,7 +34,6 @@
     "languages": [
       "fr",
       "en"
-    ],
-    "herokuAppName": "redlean-snl"
+    ]
   }
 }

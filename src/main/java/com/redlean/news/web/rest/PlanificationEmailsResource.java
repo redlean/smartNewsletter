@@ -49,7 +49,7 @@ public class PlanificationEmailsResource {
 
     private static final String ENTITY_NAME = "planificationEmails";
 
-    private final PlanificationEmailsService planificationEmailsService;
+   private final PlanificationEmailsService planificationEmailsService;
 
     public PlanificationEmailsResource(PlanificationEmailsService planificationEmailsService) {
         this.planificationEmailsService = planificationEmailsService;
@@ -70,9 +70,7 @@ public class PlanificationEmailsResource {
             throw new BadRequestAlertException("A new planificationEmails cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PlanificationEmails result = planificationEmailsService.save(planificationEmails);
-        if (result != null){
-            planificationEmailsService.SendMailInDate();
-        }
+           planificationEmailsService.SendMailInDate();
         return ResponseEntity.created(new URI("/api/planification-emails/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -145,9 +143,7 @@ public class PlanificationEmailsResource {
             return createPlanificationEmails(planificationEmails);
         }
         PlanificationEmails result = planificationEmailsService.save(planificationEmails);
-        if (result != null){
-            planificationEmailsService.SendMailInDate();
-        }
+          planificationEmailsService.SendMailInDate();
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, planificationEmails.getId().toString()))
             .body(result);

@@ -6,4 +6,3 @@ export * from './planification-emails-delete-dialog.component';
 export * from './planification-emails-detail.component';
 export * from './planification-emails.component';
 export * from './planification-emails.route';
-
