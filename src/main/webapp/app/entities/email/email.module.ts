@@ -1,7 +1,10 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA, Directive} from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import {FormsModule} from '@angular/forms';
+import {CKEditorModule} from 'ng2-ckeditor';
+import {BrowserModule} from '@angular/platform-browser';
 import { SmartNewsSharedModule } from '../../shared';
+
 import {
     EmailService,
     EmailPopupService,
@@ -15,6 +18,8 @@ import {
     emailPopupRoute,
     EmailResolvePagingParams,
 } from './';
+import {SafeHtmlPipe} from './email-dialog.component';
+// import {FileSelectDirective, FileUploader} from 'ng2-file-upload';
 
 const ENTITY_STATES = [
     ...emailRoute,
@@ -24,7 +29,8 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         SmartNewsSharedModule,
-        RouterModule.forChild(ENTITY_STATES)
+        RouterModule.forChild(ENTITY_STATES),
+        BrowserModule, CKEditorModule, FormsModule,
     ],
     declarations: [
         EmailComponent,
@@ -33,6 +39,7 @@ const ENTITY_STATES = [
         EmailDeleteDialogComponent,
         EmailPopupComponent,
         EmailDeletePopupComponent,
+        SafeHtmlPipe
     ],
     entryComponents: [
         EmailComponent,

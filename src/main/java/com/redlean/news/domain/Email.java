@@ -1,9 +1,12 @@
 package com.redlean.news.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 
@@ -22,14 +25,6 @@ public class Email implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "destinataires", nullable = false)
-    private String destinataires;
-
-    @NotNull
-    @Column(name = "expediteur", nullable = false)
-    private String expediteur;
-
-    @NotNull
     @Column(name = "objet", nullable = false)
     private String objet;
 
@@ -40,6 +35,10 @@ public class Email implements Serializable {
     @Column(name = "piece_joint")
     private String pieceJoint;
 
+    @OneToMany(mappedBy = "planifForEmail")
+    @JsonIgnore
+    private Set<PlanificationEmails> planifs = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -47,32 +46,6 @@ public class Email implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getDestinataires() {
-        return destinataires;
-    }
-
-    public Email destinataires(String destinataires) {
-        this.destinataires = destinataires;
-        return this;
-    }
-
-    public void setDestinataires(String destinataires) {
-        this.destinataires = destinataires;
-    }
-
-    public String getExpediteur() {
-        return expediteur;
-    }
-
-    public Email expediteur(String expediteur) {
-        this.expediteur = expediteur;
-        return this;
-    }
-
-    public void setExpediteur(String expediteur) {
-        this.expediteur = expediteur;
     }
 
     public String getObjet() {
@@ -113,6 +86,31 @@ public class Email implements Serializable {
     public void setPieceJoint(String pieceJoint) {
         this.pieceJoint = pieceJoint;
     }
+
+    public Set<PlanificationEmails> getPlanifs() {
+        return planifs;
+    }
+
+    public Email planifs(Set<PlanificationEmails> planificationEmails) {
+        this.planifs = planificationEmails;
+        return this;
+    }
+
+    public Email addPlanif(PlanificationEmails planificationEmails) {
+        this.planifs.add(planificationEmails);
+        planificationEmails.setPlanifForEmail(this);
+        return this;
+    }
+
+    public Email removePlanif(PlanificationEmails planificationEmails) {
+        this.planifs.remove(planificationEmails);
+        planificationEmails.setPlanifForEmail(null);
+        return this;
+    }
+
+    public void setPlanifs(Set<PlanificationEmails> planificationEmails) {
+        this.planifs = planificationEmails;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -139,8 +137,6 @@ public class Email implements Serializable {
     public String toString() {
         return "Email{" +
             "id=" + getId() +
-            ", destinataires='" + getDestinataires() + "'" +
-            ", expediteur='" + getExpediteur() + "'" +
             ", objet='" + getObjet() + "'" +
             ", contenu='" + getContenu() + "'" +
             ", pieceJoint='" + getPieceJoint() + "'" +

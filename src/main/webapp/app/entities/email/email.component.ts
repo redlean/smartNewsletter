@@ -11,6 +11,7 @@ import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
     selector: 'jhi-email',
     templateUrl: './email.component.html'
 })
+
 export class EmailComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
@@ -117,4 +118,5 @@ currentAccount: any;
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }
+
 }

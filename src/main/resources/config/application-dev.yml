@@ -26,15 +26,9 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
-        url: jdbc:postgresql://ec2-23-21-164-107.compute-1.amazonaws.com/ddg56j42u9seqa?user=czteqezjpxxmdo&password=ffbc994c49f27064859be11da1111972176673ebfcca472b38f7a64ff6eb1209&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-        databaseName:
-        serverName:
-        username: czteqezjpxxmdo
-        password: ffbc994c49f27064859be11da1111972176673ebfcca472b38f7a64ff6eb1209
-#        url: jdbc:postgresql://localhost:5433/postgres
-#        username: postgres
-#        password: admin
+        url: jdbc:postgresql://localhost:5432/SmartNewsDB
+        username: postgres
+        password: root
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

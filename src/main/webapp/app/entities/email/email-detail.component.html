@@ -4,23 +4,17 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="smartNewsApp.email.destinataires">Destinataires</span></dt>
-        <dd>
-            <span>{{email.destinataires}}</span>
-        </dd>
-        <dt><span jhiTranslate="smartNewsApp.email.expediteur">Expediteur</span></dt>
-        <dd>
-            <span>{{email.expediteur}}</span>
-        </dd>
         <dt><span jhiTranslate="smartNewsApp.email.objet">Objet</span></dt>
         <dd>
             <span>{{email.objet}}</span>
         </dd>
         <dt><span jhiTranslate="smartNewsApp.email.contenu">Contenu</span></dt>
         <dd>
-            <span>{{email.contenu}}</span>
+            <!--<span innerHtml="email.contenu | safeHtml"></span>-->
+            <div [innerHtml]="email.contenu | safeHtml">
+            </div>
         </dd>
-        <dt><span jhiTranslate="smartNewsApp.email.pieceJoint">Piece Joint</span></dt>
+        <dt><span jhiTranslate="smartNewsApp.email.pieceJoint">Piece Jointe</span></dt>
         <dd>
             <span>{{email.pieceJoint}}</span>
         </dd>

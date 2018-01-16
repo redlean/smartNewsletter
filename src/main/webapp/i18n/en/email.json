@@ -15,11 +15,10 @@
             "detail": {
                 "title": "Email"
             },
-            "destinataires": "Destinataires",
-            "expediteur": "Expediteur",
             "objet": "Objet",
             "contenu": "Contenu",
-            "pieceJoint": "Piece Joint"
+            "pieceJoint": "Joindre des fichiers",
+            "planif": "Planif"
         }
     }
 }

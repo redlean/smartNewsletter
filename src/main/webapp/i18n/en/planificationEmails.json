@@ -1,0 +1,26 @@
+{
+    "smartNewsApp": {
+        "planificationEmails" : {
+            "home": {
+                "title": "Planification Emails",
+                "createLabel": "Create a new Planification Emails",
+                "createOrEditLabel": "Create or edit a Planification Emails"
+            },
+            "created": "A new Planification Emails is created with identifier {{ param }}",
+            "updated": "A Planification Emails is updated with identifier {{ param }}",
+            "deleted": "A Planification Emails is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Planification Emails {{ id }}?"
+            },
+            "detail": {
+                "title": "Planification Emails"
+            },
+            "tacheName": "Le nom de la tâche",
+            "expediteur": "Expediteur",
+            "destinataires": "Destinataire",
+            "status": "Status",
+            "datePlanif": "Date d'envoi",
+            "planifForEmail": "L'e-mail à envoyer"
+        }
+    }
+}

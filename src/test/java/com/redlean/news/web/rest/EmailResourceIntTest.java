@@ -39,12 +39,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = SmartNewsApp.class)
 public class EmailResourceIntTest {
 
-    private static final String DEFAULT_DESTINATAIRES = "AAAAAAAAAA";
-    private static final String UPDATED_DESTINATAIRES = "BBBBBBBBBB";
-
-    private static final String DEFAULT_EXPEDITEUR = "AAAAAAAAAA";
-    private static final String UPDATED_EXPEDITEUR = "BBBBBBBBBB";
-
     private static final String DEFAULT_OBJET = "AAAAAAAAAA";
     private static final String UPDATED_OBJET = "BBBBBBBBBB";
 
@@ -95,8 +89,6 @@ public class EmailResourceIntTest {
      */
     public static Email createEntity(EntityManager em) {
         Email email = new Email()
-            .destinataires(DEFAULT_DESTINATAIRES)
-            .expediteur(DEFAULT_EXPEDITEUR)
             .objet(DEFAULT_OBJET)
             .contenu(DEFAULT_CONTENU)
             .pieceJoint(DEFAULT_PIECE_JOINT);
@@ -123,8 +115,6 @@ public class EmailResourceIntTest {
         List<Email> emailList = emailRepository.findAll();
         assertThat(emailList).hasSize(databaseSizeBeforeCreate + 1);
         Email testEmail = emailList.get(emailList.size() - 1);
-        assertThat(testEmail.getDestinataires()).isEqualTo(DEFAULT_DESTINATAIRES);
-        assertThat(testEmail.getExpediteur()).isEqualTo(DEFAULT_EXPEDITEUR);
         assertThat(testEmail.getObjet()).isEqualTo(DEFAULT_OBJET);
         assertThat(testEmail.getContenu()).isEqualTo(DEFAULT_CONTENU);
         assertThat(testEmail.getPieceJoint()).isEqualTo(DEFAULT_PIECE_JOINT);
@@ -147,42 +137,6 @@ public class EmailResourceIntTest {
         // Validate the Email in the database
         List<Email> emailList = emailRepository.findAll();
         assertThat(emailList).hasSize(databaseSizeBeforeCreate);
-    }
-
-    @Test
-    @Transactional
-    public void checkDestinatairesIsRequired() throws Exception {
-        int databaseSizeBeforeTest = emailRepository.findAll().size();
-        // set the field null
-        email.setDestinataires(null);
-
-        // Create the Email, which fails.
-
-        restEmailMockMvc.perform(post("/api/emails")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(email)))
-            .andExpect(status().isBadRequest());
-
-        List<Email> emailList = emailRepository.findAll();
-        assertThat(emailList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkExpediteurIsRequired() throws Exception {
-        int databaseSizeBeforeTest = emailRepository.findAll().size();
-        // set the field null
-        email.setExpediteur(null);
-
-        // Create the Email, which fails.
-
-        restEmailMockMvc.perform(post("/api/emails")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(email)))
-            .andExpect(status().isBadRequest());
-
-        List<Email> emailList = emailRepository.findAll();
-        assertThat(emailList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -232,8 +186,6 @@ public class EmailResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(email.getId().intValue())))
-            .andExpect(jsonPath("$.[*].destinataires").value(hasItem(DEFAULT_DESTINATAIRES.toString())))
-            .andExpect(jsonPath("$.[*].expediteur").value(hasItem(DEFAULT_EXPEDITEUR.toString())))
             .andExpect(jsonPath("$.[*].objet").value(hasItem(DEFAULT_OBJET.toString())))
             .andExpect(jsonPath("$.[*].contenu").value(hasItem(DEFAULT_CONTENU.toString())))
             .andExpect(jsonPath("$.[*].pieceJoint").value(hasItem(DEFAULT_PIECE_JOINT.toString())));
@@ -250,8 +202,6 @@ public class EmailResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(email.getId().intValue()))
-            .andExpect(jsonPath("$.destinataires").value(DEFAULT_DESTINATAIRES.toString()))
-            .andExpect(jsonPath("$.expediteur").value(DEFAULT_EXPEDITEUR.toString()))
             .andExpect(jsonPath("$.objet").value(DEFAULT_OBJET.toString()))
             .andExpect(jsonPath("$.contenu").value(DEFAULT_CONTENU.toString()))
             .andExpect(jsonPath("$.pieceJoint").value(DEFAULT_PIECE_JOINT.toString()));
@@ -278,8 +228,6 @@ public class EmailResourceIntTest {
         // Disconnect from session so that the updates on updatedEmail are not directly saved in db
         em.detach(updatedEmail);
         updatedEmail
-            .destinataires(UPDATED_DESTINATAIRES)
-            .expediteur(UPDATED_EXPEDITEUR)
             .objet(UPDATED_OBJET)
             .contenu(UPDATED_CONTENU)
             .pieceJoint(UPDATED_PIECE_JOINT);
@@ -293,8 +241,6 @@ public class EmailResourceIntTest {
         List<Email> emailList = emailRepository.findAll();
         assertThat(emailList).hasSize(databaseSizeBeforeUpdate);
         Email testEmail = emailList.get(emailList.size() - 1);
-        assertThat(testEmail.getDestinataires()).isEqualTo(UPDATED_DESTINATAIRES);
-        assertThat(testEmail.getExpediteur()).isEqualTo(UPDATED_EXPEDITEUR);
         assertThat(testEmail.getObjet()).isEqualTo(UPDATED_OBJET);
         assertThat(testEmail.getContenu()).isEqualTo(UPDATED_CONTENU);
         assertThat(testEmail.getPieceJoint()).isEqualTo(UPDATED_PIECE_JOINT);

@@ -17,21 +17,20 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="destinataires"><span jhiTranslate="smartNewsApp.email.destinataires">Destinataires</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="expediteur"><span jhiTranslate="smartNewsApp.email.expediteur">Expediteur</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="objet"><span jhiTranslate="smartNewsApp.email.objet">Objet</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="contenu"><span jhiTranslate="smartNewsApp.email.contenu">Contenu</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="pieceJoint"><span jhiTranslate="smartNewsApp.email.pieceJoint">Piece Joint</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pieceJoint"><span jhiTranslate="smartNewsApp.email.pieceJoint">Piece Jointe</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let email of emails ;trackBy: trackId">
                 <td><a [routerLink]="['../email', email.id ]">{{email.id}}</a></td>
-                <td>{{email.destinataires}}</td>
-                <td>{{email.expediteur}}</td>
                 <td>{{email.objet}}</td>
-                <td>{{email.contenu}}</td>
+                <td>
+                    <div [innerHtml]="email.contenu | safeHtml">
+                </div>
+                </td>
                 <td>{{email.pieceJoint}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

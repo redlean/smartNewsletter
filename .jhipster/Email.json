@@ -1,21 +1,14 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "planif",
+            "otherEntityName": "planificationEmails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "planifForEmail"
+        }
+    ],
     "fields": [
-        {
-            "fieldName": "destinataires",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "expediteur",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
         {
             "fieldName": "objet",
             "fieldType": "String",
