@@ -56,7 +56,7 @@ public class PlanificationEmailsService {
         return planificationEmailsRepository.save(planificationEmails);
     }
 
-   @Scheduled(cron = "0 0 10 * * ?")
+  // @Scheduled(cron = "0 0 10 * * ?")
     public void SendMailInDate() {
         List<PlanificationEmails> ListePlanif = planificationEmailsRepository.findAll();
         System.out.println(ListePlanif);
