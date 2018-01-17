@@ -1,0 +1,47 @@
+
+<div *ngIf="planificationEmails">
+    <h2><span jhiTranslate="smartNewsApp.planificationEmails.detail.title">Planification Emails</span> {{planificationEmails.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="smartNewsApp.planificationEmails.tacheName">Le nom de la tâche</span></dt>
+        <dd>
+            <span>{{planificationEmails.tacheName}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.planificationEmails.expediteur">Expediteur</span></dt>
+        <dd>
+            <span>{{planificationEmails.expediteur}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.planificationEmails.destinataires">Destinataire</span></dt>
+        <dd>
+            <span>{{planificationEmails.destinataires}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.planificationEmails.status">Status</span></dt>
+        <dd>
+            <span>{{planificationEmails.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.planificationEmails.datePlanif">Date d'envoi</span></dt>
+        <dd>
+            <span>{{planificationEmails.datePlanif}}</span>
+        </dd>
+        <dt><span jhiTranslate="smartNewsApp.planificationEmails.planifForEmail">L'e-mail à envoyer</span></dt>
+        <dd>
+            <div *ngIf="planificationEmails.planifForEmail">
+                <a [routerLink]="['/email', planificationEmails.planifForEmail?.id]">{{planificationEmails.planifForEmail?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'planification-emails/'+ planificationEmails.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
