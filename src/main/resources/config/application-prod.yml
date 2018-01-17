@@ -21,9 +21,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/smartNews
-        username: smartNews
-        password:
+        url: jdbc:postgresql://ec2-54-217-245-9.eu-west-1.compute.amazonaws.com:5432/d7pusj4l1gt7bb?user=khyyhmpuaymecq&password=75cb80bb023bd54c9d9f43436484108208c7ddd9b4b1487fa954d0eabf8c2f63&ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+        username: khyyhmpuaymecq
+        password: 75cb80bb023bd54c9d9f43436484108208c7ddd9b4b1487fa954d0eabf8c2f63
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
