@@ -4,13 +4,14 @@
       "packageName": "com.redlean.news",
       "nativeLanguage": "fr"
     },
-    "jhipsterVersion": "4.11.1",
-    "baseName": "smartNews",
+    "jhipsterVersion": "4.13.2",
+    "baseName": "smart_newsletter",
     "packageName": "com.redlean.news",
     "packageFolder": "com/redlean/news",
     "serverPort": "8080",
     "authenticationType": "jwt",
-    "hibernateCache": "no",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
     "clusteredHttpSession": false,
     "websocket": false,
     "databaseType": "sql",
@@ -19,15 +20,17 @@
     "searchEngine": false,
     "messageBroker": false,
     "serviceDiscoveryType": false,
-    "buildTool": "gradle",
-    "enableSocialSignIn": false,
+    "buildTool": "maven",
+    "enableSocialSignIn": true,
     "enableSwaggerCodegen": false,
-    "jwtSecretKey": "70c60b4fd5af77e96dca1ae1db45fada73d05032",
+    "jwtSecretKey": "aebf9d91927101350ceac8301c3c1f3147470e0e",
     "clientFramework": "angularX",
     "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",
-    "testFrameworks": [],
+    "testFrameworks": [
+      "gatling"
+    ],
     "jhiPrefix": "jhi",
     "enableTranslation": true,
     "nativeLanguage": "fr",
@@ -35,6 +38,6 @@
       "fr",
       "en"
     ],
-    "herokuAppName": "redlean-snl"
+    "herokuAppName": "smart-newsletter-redlean-app"
   }
 }

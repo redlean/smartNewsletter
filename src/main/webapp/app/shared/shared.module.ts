@@ -2,8 +2,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import {
-    SmartNewsSharedLibsModule,
-    SmartNewsSharedCommonModule,
+    SmartNewsletterSharedLibsModule,
+    SmartNewsletterSharedCommonModule,
     CSRFService,
     AuthServerProvider,
     AccountService,
@@ -14,14 +14,17 @@ import {
     JhiLoginModalComponent,
     Principal,
     HasAnyAuthorityDirective,
+    JhiSocialComponent,
+    SocialService,
 } from './';
 
 @NgModule({
     imports: [
-        SmartNewsSharedLibsModule,
-        SmartNewsSharedCommonModule
+        SmartNewsletterSharedLibsModule,
+        SmartNewsletterSharedCommonModule
     ],
     declarations: [
+        JhiSocialComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective
     ],
@@ -33,12 +36,14 @@ import {
         Principal,
         CSRFService,
         AuthServerProvider,
+        SocialService,
         UserService,
         DatePipe
     ],
     entryComponents: [JhiLoginModalComponent],
     exports: [
-        SmartNewsSharedCommonModule,
+        SmartNewsletterSharedCommonModule,
+        JhiSocialComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
         DatePipe
@@ -46,4 +51,4 @@ import {
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export class SmartNewsSharedModule {}
+export class SmartNewsletterSharedModule {}

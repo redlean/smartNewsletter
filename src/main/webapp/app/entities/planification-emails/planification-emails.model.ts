@@ -1,11 +1,11 @@
 import { BaseEntity } from './../../shared';
 
-export class PlanificationEmails implements BaseEntity {
+export class Planification_emails implements BaseEntity {
     constructor(
         public id?: number,
-        public tacheName?: string,
+        public planifName?: string,
         public expediteur?: string,
-        public destinataires?: string,
+        public destinataire?: string,
         public status?: string,
         public datePlanif?: string,
         public planifForEmail?: BaseEntity,

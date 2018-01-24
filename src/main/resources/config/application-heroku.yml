@@ -12,7 +12,7 @@
 
 eureka:
     instance:
-        hostname: redlean-snl.herokuapp.com
+        hostname: smart-newsletter-redlean-app.herokuapp.com
         non-secure-port: 80
         prefer-ip-address: false
     client:

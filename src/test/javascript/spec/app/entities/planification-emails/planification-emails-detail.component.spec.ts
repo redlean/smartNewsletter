@@ -1,59 +1,49 @@
 /* tslint:disable max-line-length */
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { DatePipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
-import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
-import { SmartNewsTestModule } from '../../../test.module';
-import { MockActivatedRoute } from '../../../helpers/mock-route.service';
-import { PlanificationEmailsDetailComponent } from '../../../../../../main/webapp/app/entities/planification-emails/planification-emails-detail.component';
-import { PlanificationEmailsService } from '../../../../../../main/webapp/app/entities/planification-emails/planification-emails.service';
-import { PlanificationEmails } from '../../../../../../main/webapp/app/entities/planification-emails/planification-emails.model';
+import { Observable } from 'rxjs/Observable';
+
+import { SmartNewsletterTestModule } from '../../../test.module';
+import { Planification_emailsDetailComponent } from '../../../../../../main/webapp/app/entities/planification-emails/planification-emails-detail.component';
+import { Planification_emailsService } from '../../../../../../main/webapp/app/entities/planification-emails/planification-emails.service';
+import { Planification_emails } from '../../../../../../main/webapp/app/entities/planification-emails/planification-emails.model';
 
 describe('Component Tests', () => {
 
-    describe('PlanificationEmails Management Detail Component', () => {
-        let comp: PlanificationEmailsDetailComponent;
-        let fixture: ComponentFixture<PlanificationEmailsDetailComponent>;
-        let service: PlanificationEmailsService;
+    describe('Planification_emails Management Detail Component', () => {
+        let comp: Planification_emailsDetailComponent;
+        let fixture: ComponentFixture<Planification_emailsDetailComponent>;
+        let service: Planification_emailsService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                imports: [SmartNewsTestModule],
-                declarations: [PlanificationEmailsDetailComponent],
+                imports: [SmartNewsletterTestModule],
+                declarations: [Planification_emailsDetailComponent],
                 providers: [
-                    JhiDateUtils,
-                    JhiDataUtils,
-                    DatePipe,
-                    {
-                        provide: ActivatedRoute,
-                        useValue: new MockActivatedRoute({id: 123})
-                    },
-                    PlanificationEmailsService,
-                    JhiEventManager
+                    Planification_emailsService
                 ]
-            }).overrideTemplate(PlanificationEmailsDetailComponent, '')
+            })
+            .overrideTemplate(Planification_emailsDetailComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(PlanificationEmailsDetailComponent);
+            fixture = TestBed.createComponent(Planification_emailsDetailComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(PlanificationEmailsService);
+            service = fixture.debugElement.injector.get(Planification_emailsService);
         });
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
-            // GIVEN
+                // GIVEN
 
-            spyOn(service, 'find').and.returnValue(Observable.of(new PlanificationEmails(10)));
+                spyOn(service, 'find').and.returnValue(Observable.of(new Planification_emails(123)));
 
-            // WHEN
-            comp.ngOnInit();
+                // WHEN
+                comp.ngOnInit();
 
-            // THEN
-            expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.planificationEmails).toEqual(jasmine.objectContaining({id: 10}));
+                // THEN
+                expect(service.find).toHaveBeenCalledWith(123);
+                expect(comp.planification_emails).toEqual(jasmine.objectContaining({id: 123}));
             });
         });
     });

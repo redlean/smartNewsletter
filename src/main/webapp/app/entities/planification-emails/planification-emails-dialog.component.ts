@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { PlanificationEmails } from './planification-emails.model';
-import { PlanificationEmailsPopupService } from './planification-emails-popup.service';
-import { PlanificationEmailsService } from './planification-emails.service';
+import { Planification_emails } from './planification-emails.model';
+import { Planification_emailsPopupService } from './planification-emails-popup.service';
+import { Planification_emailsService } from './planification-emails.service';
 import { Email, EmailService } from '../email';
 import { ResponseWrapper } from '../../shared';
 
@@ -16,9 +16,10 @@ import { ResponseWrapper } from '../../shared';
     selector: 'jhi-planification-emails-dialog',
     templateUrl: './planification-emails-dialog.component.html'
 })
-export class PlanificationEmailsDialogComponent implements OnInit {
 
-    planificationEmails: PlanificationEmails;
+export class Planification_emailsDialogComponent implements OnInit {
+
+    planification_emails: Planification_emails;
     isSaving: boolean;
 
     emails: Email[];
@@ -26,14 +27,14 @@ export class PlanificationEmailsDialogComponent implements OnInit {
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
-        private planificationEmailsService: PlanificationEmailsService,
+        private planification_emailsService: Planification_emailsService,
         private emailService: EmailService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
-        this.planificationEmails.status = 'Non réalisée';
+        this.planification_emails.status = 'Non envoyée';
         this.isSaving = false;
         this.emailService.query()
             .subscribe((res: ResponseWrapper) => { this.emails = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
@@ -45,22 +46,22 @@ export class PlanificationEmailsDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.planificationEmails.id !== undefined) {
+        if (this.planification_emails.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.planificationEmailsService.update(this.planificationEmails));
+                this.planification_emailsService.update(this.planification_emails));
         } else {
             this.subscribeToSaveResponse(
-                this.planificationEmailsService.create(this.planificationEmails));
+                this.planification_emailsService.create(this.planification_emails));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<PlanificationEmails>) {
-        result.subscribe((res: PlanificationEmails) =>
+    private subscribeToSaveResponse(result: Observable<Planification_emails>) {
+        result.subscribe((res: Planification_emails) =>
             this.onSaveSuccess(res), (res: Response) => this.onSaveError());
     }
 
-    private onSaveSuccess(result: PlanificationEmails) {
-        this.eventManager.broadcast({ name: 'planificationEmailsListModification', content: 'OK'});
+    private onSaveSuccess(result: Planification_emails) {
+        this.eventManager.broadcast({ name: 'planification_emailsListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -72,6 +73,9 @@ export class PlanificationEmailsDialogComponent implements OnInit {
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
     }
+    trackEmailByObject(index: number, item: Email) {
+        return item.objet;
+    }
 
     trackEmailById(index: number, item: Email) {
         return item.objet;
@@ -82,23 +86,23 @@ export class PlanificationEmailsDialogComponent implements OnInit {
     selector: 'jhi-planification-emails-popup',
     template: ''
 })
-export class PlanificationEmailsPopupComponent implements OnInit, OnDestroy {
+export class Planification_emailsPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private planificationEmailsPopupService: PlanificationEmailsPopupService
+        private planification_emailsPopupService: Planification_emailsPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.planificationEmailsPopupService
-                    .open(PlanificationEmailsDialogComponent as Component, params['id']);
+                this.planification_emailsPopupService
+                    .open(Planification_emailsDialogComponent as Component, params['id']);
             } else {
-                this.planificationEmailsPopupService
-                    .open(PlanificationEmailsDialogComponent as Component);
+                this.planification_emailsPopupService
+                    .open(Planification_emailsDialogComponent as Component);
             }
         });
     }

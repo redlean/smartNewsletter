@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SmartNewsSharedModule } from '../shared';
+import { SmartNewsletterSharedModule } from '../shared';
 
 import {
     Register,
@@ -16,15 +16,19 @@ import {
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     SettingsComponent,
+    SocialRegisterComponent,
+    SocialAuthComponent,
     accountState
 } from './';
 
 @NgModule({
     imports: [
-        SmartNewsSharedModule,
+        SmartNewsletterSharedModule,
         RouterModule.forChild(accountState)
     ],
     declarations: [
+        SocialRegisterComponent,
+        SocialAuthComponent,
         ActivateComponent,
         RegisterComponent,
         PasswordComponent,
@@ -42,4 +46,4 @@ import {
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SmartNewsAccountModule {}
+export class SmartNewsletterAccountModule {}

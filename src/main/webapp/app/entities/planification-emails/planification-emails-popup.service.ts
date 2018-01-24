@@ -1,17 +1,17 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { PlanificationEmails } from './planification-emails.model';
-import { PlanificationEmailsService } from './planification-emails.service';
+import { Planification_emails } from './planification-emails.model';
+import { Planification_emailsService } from './planification-emails.service';
 
 @Injectable()
-export class PlanificationEmailsPopupService {
+export class Planification_emailsPopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private planificationEmailsService: PlanificationEmailsService
+        private planification_emailsService: Planification_emailsService
 
     ) {
         this.ngbModalRef = null;
@@ -25,28 +25,28 @@ export class PlanificationEmailsPopupService {
             }
 
             if (id) {
-                this.planificationEmailsService.find(id).subscribe((planificationEmails) => {
-                    this.ngbModalRef = this.planificationEmailsModalRef(component, planificationEmails);
+                this.planification_emailsService.find(id).subscribe((planification_emails) => {
+                    this.ngbModalRef = this.planification_emailsModalRef(component, planification_emails);
                     resolve(this.ngbModalRef);
                 });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.planificationEmailsModalRef(component, new PlanificationEmails());
+                    this.ngbModalRef = this.planification_emailsModalRef(component, new Planification_emails());
                     resolve(this.ngbModalRef);
                 }, 0);
             }
         });
     }
 
-    planificationEmailsModalRef(component: Component, planificationEmails: PlanificationEmails): NgbModalRef {
+    planification_emailsModalRef(component: Component, planification_emails: Planification_emails): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.planificationEmails = planificationEmails;
+        modalRef.componentInstance.planification_emails = planification_emails;
         modalRef.result.then((result) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;
         }, (reason) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;
         });
         return modalRef;

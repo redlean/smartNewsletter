@@ -1,55 +1,41 @@
-import {Component, OnInit, OnDestroy, PipeTransform, Pipe} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
-
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
-
+import { JhiEventManager } from 'ng-jhipster';
+import { CKEditorModule } from 'ng2-ckeditor';
 import { Email } from './email.model';
 import { EmailPopupService } from './email-popup.service';
 import { EmailService } from './email.service';
-import {FileUploader, FileSelectDirective} from 'ng2-file-upload';
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
-
-import { DomSanitizer } from '@angular/platform-browser'
-
-@Pipe({ name: 'safeHtml'})
-export class SafeHtmlPipe implements PipeTransform  {
-    constructor(private sanitized: DomSanitizer) {}
-    transform(value) {
-        return this.sanitized.bypassSecurityTrustHtml(value);
-        // return this.sanitizer.bypassSecurityTrustStyle(value);
-        // return this.sanitizer.bypassSecurityTrustHtml(value);
-        // return this.sanitizer.bypassSecurityTrustXxx(value);
-    }
-}
-
+import {createViewChild} from "@angular/compiler/src/core";
+// this.ckeConfig = {
+//     height: 400,
+//     language: "en",
+//     allowedContent: true,
+//     toolbar: [
+//         { name: "clipboard", items: ["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Undo", "Redo"] },
+//         { name: "links", items: ["Link", "Unlink", "Anchor"] },
+//         { name: "insert", items: ["Image", "Table", "HorizontalRule", "SpecialChar", "Iframe", "imageExplorer"] }
+//     ]
+// };
 @Component({
     selector: 'jhi-email-dialog',
     templateUrl: './email-dialog.component.html'
 })
 export class EmailDialogComponent implements OnInit {
+
     email: Email;
     isSaving: boolean;
-    public uploader: FileUploader = new FileUploader({url: 'http://localhost:9000/upload'});
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
         private emailService: EmailService,
         private eventManager: JhiEventManager
     ) {
     }
-    // public fileOverBase(e: any): void {
-    //     this.hasBaseDropZoneOver = e;
-    // }
-    //
-    // public fileOverAnother(e: any): void {
-    //     this.hasAnotherDropZoneOver = e;
-    // }
+
     ngOnInit() {
         this.isSaving = false;
-        // this.uploader = new FileUploader({url: `YOUR URL`});
     }
 
     clear() {
@@ -81,20 +67,16 @@ export class EmailDialogComponent implements OnInit {
     private onSaveError() {
         this.isSaving = false;
     }
-
-    private onError(error: any) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
 }
+
 
 @Component({
     selector: 'jhi-email-popup',
     template: ''
 })
 export class EmailPopupComponent implements OnInit, OnDestroy {
-
+  //  public uploader: fileUploader = new FileUploader()
     routeSub: any;
-
     constructor(
         private route: ActivatedRoute,
         private emailPopupService: EmailPopupService
@@ -115,5 +97,29 @@ export class EmailPopupComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.routeSub.unsubscribe();
     }
+    // openImageExplorer($event: any) {
+    //     this.showFiles = true; // open pop-up window
+    // }
+    // onCloseImage() {
+    //     this.showFiles = false; // close the pop-up window
+    // }
+    //
+    // onAddImage() {
+    //     try
+    //     {
+    //         let link = this.ckeditor.instance.document.createElement("img");
+    //         link.setAttribute("alt", "Image");
+    //         link.setAttribute("src", "./Images/test.png");
+    //
+    //         this.ckeditor.instance.insertElement(link);
+    //     }
+    //     catch(error)
+    //     {
+    //         console.log((<Error>error).message);
+    //     }
+    //
+    //     this.showFiles = false; // close the pop-up window
+    // }
+
 
 }

@@ -1,5 +1,5 @@
 {
-    "smartNewsApp": {
+    "smartNewsletterApp": {
         "email" : {
             "home": {
                 "title": "Emails",
@@ -15,10 +15,10 @@
             "detail": {
                 "title": "Email"
             },
-            "objet": "Objet",
-            "contenu": "Contenu",
-            "pieceJoint": "Joindre des fichiers",
-            "planif": "Planif"
+            "objet": "Object",
+            "contenu": "content",
+            "pieceJoint": "Attachment",
+            "planifForEmail": "Email "
         }
     }
 }

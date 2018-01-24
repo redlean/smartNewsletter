@@ -1,11 +1,8 @@
 /* tslint:disable max-line-length */
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { DatePipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
-import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
-import { SmartNewsTestModule } from '../../../test.module';
-import { MockActivatedRoute } from '../../../helpers/mock-route.service';
+import { Observable } from 'rxjs/Observable';
+
+import { SmartNewsletterTestModule } from '../../../test.module';
 import { EmailDetailComponent } from '../../../../../../main/webapp/app/entities/email/email-detail.component';
 import { EmailService } from '../../../../../../main/webapp/app/entities/email/email.service';
 import { Email } from '../../../../../../main/webapp/app/entities/email/email.model';
@@ -19,20 +16,13 @@ describe('Component Tests', () => {
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                imports: [SmartNewsTestModule],
+                imports: [SmartNewsletterTestModule],
                 declarations: [EmailDetailComponent],
                 providers: [
-                    JhiDateUtils,
-                    JhiDataUtils,
-                    DatePipe,
-                    {
-                        provide: ActivatedRoute,
-                        useValue: new MockActivatedRoute({id: 123})
-                    },
-                    EmailService,
-                    JhiEventManager
+                    EmailService
                 ]
-            }).overrideTemplate(EmailDetailComponent, '')
+            })
+            .overrideTemplate(EmailDetailComponent, '')
             .compileComponents();
         }));
 
@@ -44,16 +34,16 @@ describe('Component Tests', () => {
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
-            // GIVEN
+                // GIVEN
 
-            spyOn(service, 'find').and.returnValue(Observable.of(new Email(10)));
+                spyOn(service, 'find').and.returnValue(Observable.of(new Email(123)));
 
-            // WHEN
-            comp.ngOnInit();
+                // WHEN
+                comp.ngOnInit();
 
-            // THEN
-            expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.email).toEqual(jasmine.objectContaining({id: 10}));
+                // THEN
+                expect(service.find).toHaveBeenCalledWith(123);
+                expect(comp.email).toEqual(jasmine.objectContaining({id: 123}));
             });
         });
     });

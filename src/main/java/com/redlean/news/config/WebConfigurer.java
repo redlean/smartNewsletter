@@ -72,7 +72,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         // CloudFoundry issue, see https://github.com/cloudfoundry/gorouter/issues/64
         mappings.add("json", MediaType.TEXT_HTML_VALUE + ";charset=utf-8");
         container.setMimeMappings(mappings);
-        // When running in an IDE or with ./gradlew bootRun, set location of the static web assets.
+        // When running in an IDE or with ./mvnw spring-boot:run, set location of the static web assets.
         setLocationForStaticAssets(container);
 
         /*
@@ -93,7 +93,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
     private void setLocationForStaticAssets(ConfigurableEmbeddedServletContainer container) {
         File root;
         String prefixPath = resolvePathPrefix();
-        root = new File(prefixPath + "build/www/");
+        root = new File(prefixPath + "target/www/");
         if (root.exists() && root.isDirectory()) {
             container.setDocumentRoot(root);
         }
@@ -106,7 +106,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         String fullExecutablePath = this.getClass().getResource("").getPath();
         String rootPath = Paths.get(".").toUri().normalize().getPath();
         String extractedPath = fullExecutablePath.replace(rootPath, "");
-        int extractionEndIndex = extractedPath.indexOf("build/");
+        int extractionEndIndex = extractedPath.indexOf("target/");
         if (extractionEndIndex <= 0) {
             return "";
         }
@@ -161,6 +161,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
         if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
             log.debug("Registering CORS filter");
             source.registerCorsConfiguration("/api/**", config);
+            source.registerCorsConfiguration("/management/**", config);
             source.registerCorsConfiguration("/v2/api-docs", config);
         }
         return new CorsFilter(source);

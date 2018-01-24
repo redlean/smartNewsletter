@@ -6,7 +6,7 @@ export class Email implements BaseEntity {
         public objet?: string,
         public contenu?: string,
         public pieceJoint?: string,
-        public planifs?: BaseEntity[],
+        public planifForEmails?: BaseEntity[],
     ) {
     }
 }

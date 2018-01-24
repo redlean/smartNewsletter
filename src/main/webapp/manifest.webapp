@@ -1,6 +1,6 @@
 {
-  "name": "SmartNews",
-  "short_name": "SmartNews",
+  "name": "SmartNewsletter",
+  "short_name": "SmartNewsletter",
   "icons": [
       {
           "src": "./content/images/logo-jhipster.png",

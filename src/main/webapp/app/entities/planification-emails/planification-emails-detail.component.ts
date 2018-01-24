@@ -1,24 +1,24 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { PlanificationEmails } from './planification-emails.model';
-import { PlanificationEmailsService } from './planification-emails.service';
+import { Planification_emails } from './planification-emails.model';
+import { Planification_emailsService } from './planification-emails.service';
 
 @Component({
     selector: 'jhi-planification-emails-detail',
     templateUrl: './planification-emails-detail.component.html'
 })
-export class PlanificationEmailsDetailComponent implements OnInit, OnDestroy {
+export class Planification_emailsDetailComponent implements OnInit, OnDestroy {
 
-    planificationEmails: PlanificationEmails;
+    planification_emails: Planification_emails;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: JhiEventManager,
-        private planificationEmailsService: PlanificationEmailsService,
+        private planification_emailsService: Planification_emailsService,
         private route: ActivatedRoute
     ) {
     }
@@ -27,12 +27,12 @@ export class PlanificationEmailsDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
-        this.registerChangeInPlanificationEmails();
+        this.registerChangeInPlanification_emails();
     }
 
     load(id) {
-        this.planificationEmailsService.find(id).subscribe((planificationEmails) => {
-            this.planificationEmails = planificationEmails;
+        this.planification_emailsService.find(id).subscribe((planification_emails) => {
+            this.planification_emails = planification_emails;
         });
     }
     previousState() {
@@ -44,10 +44,10 @@ export class PlanificationEmailsDetailComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    registerChangeInPlanificationEmails() {
+    registerChangeInPlanification_emails() {
         this.eventSubscriber = this.eventManager.subscribe(
-            'planificationEmailsListModification',
-            (response) => this.load(this.planificationEmails.id)
+            'planification_emailsListModification',
+            (response) => this.load(this.planification_emails.id)
         );
     }
 }

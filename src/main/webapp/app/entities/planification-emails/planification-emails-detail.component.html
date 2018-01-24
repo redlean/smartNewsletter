@@ -1,33 +1,33 @@
 
-<div *ngIf="planificationEmails">
-    <h2><span jhiTranslate="smartNewsApp.planificationEmails.detail.title">Planification Emails</span> {{planificationEmails.id}}</h2>
+<div *ngIf="planification_emails">
+    <h2><span jhiTranslate="smartNewsletterApp.planification_emails.detail.title">Planification des e-mails</span> {{planification_emails.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="smartNewsApp.planificationEmails.tacheName">Le nom de la tâche</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.planifName">Nom de la planification</span></dt>
         <dd>
-            <span>{{planificationEmails.tacheName}}</span>
+            <span>{{planification_emails.planifName}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsApp.planificationEmails.expediteur">Expediteur</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.expediteur">Expediteur</span></dt>
         <dd>
-            <span>{{planificationEmails.expediteur}}</span>
+            <span>{{planification_emails.expediteur}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsApp.planificationEmails.destinataires">Destinataire</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.destinataire">Destinataire</span></dt>
         <dd>
-            <span>{{planificationEmails.destinataires}}</span>
+            <span>{{planification_emails.destinataire}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsApp.planificationEmails.status">Status</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.status">Statut</span></dt>
         <dd>
-            <span>{{planificationEmails.status}}</span>
+            <span>{{planification_emails.status}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsApp.planificationEmails.datePlanif">Date d'envoi</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.datePlanif">Date d'envoi</span></dt>
         <dd>
-            <span>{{planificationEmails.datePlanif}}</span>
+            <span>{{planification_emails.datePlanif}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsApp.planificationEmails.planifForEmail">L'e-mail à envoyer</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.planifForEmail">Email</span></dt>
         <dd>
-            <div *ngIf="planificationEmails.planifForEmail">
-                <a [routerLink]="['/email', planificationEmails.planifForEmail?.id]">{{planificationEmails.planifForEmail?.id}}</a>
+            <div *ngIf="planification_emails.planifForEmail">
+                <a [routerLink]="['/email', planification_emails.planifForEmail?.id]">{{planification_emails.planifForEmail?.id}}</a>
             </div>
         </dd>
     </dl>
@@ -39,8 +39,9 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'planification-emails/'+ planificationEmails.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'planification-emails/'+ planification_emails.id + '/edit'} }]"
             replaceUrl="true"
+            queryParamsHandling="merge"
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>

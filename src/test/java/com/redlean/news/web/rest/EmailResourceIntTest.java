@@ -1,10 +1,9 @@
 package com.redlean.news.web.rest;
 
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 
 import com.redlean.news.domain.Email;
 import com.redlean.news.repository.EmailRepository;
-import com.redlean.news.service.EmailService;
 import com.redlean.news.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -36,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see EmailResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 public class EmailResourceIntTest {
 
     private static final String DEFAULT_OBJET = "AAAAAAAAAA";
@@ -50,9 +49,6 @@ public class EmailResourceIntTest {
 
     @Autowired
     private EmailRepository emailRepository;
-
-    @Autowired
-    private EmailService emailService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -73,7 +69,7 @@ public class EmailResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EmailResource emailResource = new EmailResource(emailService);
+        final EmailResource emailResource = new EmailResource(emailRepository);
         this.restEmailMockMvc = MockMvcBuilders.standaloneSetup(emailResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -219,8 +215,7 @@ public class EmailResourceIntTest {
     @Transactional
     public void updateEmail() throws Exception {
         // Initialize the database
-        emailService.save(email);
-
+        emailRepository.saveAndFlush(email);
         int databaseSizeBeforeUpdate = emailRepository.findAll().size();
 
         // Update the email
@@ -268,8 +263,7 @@ public class EmailResourceIntTest {
     @Transactional
     public void deleteEmail() throws Exception {
         // Initialize the database
-        emailService.save(email);
-
+        emailRepository.saveAndFlush(email);
         int databaseSizeBeforeDelete = emailRepository.findAll().size();
 
         // Get the email

@@ -1,6 +1,6 @@
 package com.redlean.news.service;
 
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import com.redlean.news.config.Constants;
 import com.redlean.news.domain.User;
 import com.redlean.news.repository.UserRepository;
@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @see UserService
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 @Transactional
 public class UserServiceIntTest {
 

@@ -1,14 +1,14 @@
 version: '2'
 services:
-    smartnews-app:
-        image: smartnews
+    smart_newsletter-app:
+        image: smart_newsletter
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:postgresql://smartnews-postgresql:5432/smartNews
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://smart_newsletter-postgresql:5432/smart_newsletter
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
             - 8080:8080
-    smartnews-postgresql:
+    smart_newsletter-postgresql:
         extends:
             file: postgresql.yml
-            service: smartnews-postgresql
+            service: smart_newsletter-postgresql

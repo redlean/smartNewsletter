@@ -1,13 +1,13 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SmartNewsSharedModule } from '../shared';
+import { SmartNewsletterSharedModule } from '../shared';
 
 import { HOME_ROUTE, HomeComponent } from './';
 
 @NgModule({
     imports: [
-        SmartNewsSharedModule,
+        SmartNewsletterSharedModule,
         RouterModule.forChild([ HOME_ROUTE ])
     ],
     declarations: [
@@ -19,4 +19,4 @@ import { HOME_ROUTE, HomeComponent } from './';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SmartNewsHomeModule {}
+export class SmartNewsletterHomeModule {}

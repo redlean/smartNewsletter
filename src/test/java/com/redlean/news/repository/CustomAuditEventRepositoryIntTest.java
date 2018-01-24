@@ -1,6 +1,6 @@
 package com.redlean.news.repository;
 
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import com.redlean.news.config.Constants;
 import com.redlean.news.config.audit.AuditEventConverter;
 import com.redlean.news.domain.PersistentAuditEvent;
@@ -32,7 +32,7 @@ import static com.redlean.news.repository.CustomAuditEventRepository.EVENT_DATA_
  * @see CustomAuditEventRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 @Transactional
 public class CustomAuditEventRepositoryIntTest {
 

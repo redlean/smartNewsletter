@@ -1,51 +1,51 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SmartNewsSharedModule } from '../../shared';
+import { SmartNewsletterSharedModule } from '../../shared';
 import {
-    PlanificationEmailsService,
-    PlanificationEmailsPopupService,
-    PlanificationEmailsComponent,
-    PlanificationEmailsDetailComponent,
-    PlanificationEmailsDialogComponent,
-    PlanificationEmailsPopupComponent,
-    PlanificationEmailsDeletePopupComponent,
-    PlanificationEmailsDeleteDialogComponent,
-    planificationEmailsRoute,
-    planificationEmailsPopupRoute,
-    PlanificationEmailsResolvePagingParams,
+    Planification_emailsService,
+    Planification_emailsPopupService,
+    Planification_emailsComponent,
+    Planification_emailsDetailComponent,
+    Planification_emailsDialogComponent,
+    Planification_emailsPopupComponent,
+    Planification_emailsDeletePopupComponent,
+    Planification_emailsDeleteDialogComponent,
+    planification_emailsRoute,
+    planification_emailsPopupRoute,
+    Planification_emailsResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
-    ...planificationEmailsRoute,
-    ...planificationEmailsPopupRoute,
+    ...planification_emailsRoute,
+    ...planification_emailsPopupRoute,
 ];
 
 @NgModule({
     imports: [
-        SmartNewsSharedModule,
+        SmartNewsletterSharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
-        PlanificationEmailsComponent,
-        PlanificationEmailsDetailComponent,
-        PlanificationEmailsDialogComponent,
-        PlanificationEmailsDeleteDialogComponent,
-        PlanificationEmailsPopupComponent,
-        PlanificationEmailsDeletePopupComponent,
+        Planification_emailsComponent,
+        Planification_emailsDetailComponent,
+        Planification_emailsDialogComponent,
+        Planification_emailsDeleteDialogComponent,
+        Planification_emailsPopupComponent,
+        Planification_emailsDeletePopupComponent,
     ],
     entryComponents: [
-        PlanificationEmailsComponent,
-        PlanificationEmailsDialogComponent,
-        PlanificationEmailsPopupComponent,
-        PlanificationEmailsDeleteDialogComponent,
-        PlanificationEmailsDeletePopupComponent,
+        Planification_emailsComponent,
+        Planification_emailsDialogComponent,
+        Planification_emailsPopupComponent,
+        Planification_emailsDeleteDialogComponent,
+        Planification_emailsDeletePopupComponent,
     ],
     providers: [
-        PlanificationEmailsService,
-        PlanificationEmailsPopupService,
-        PlanificationEmailsResolvePagingParams,
+        Planification_emailsService,
+        Planification_emailsPopupService,
+        Planification_emailsResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SmartNewsPlanificationEmailsModule {}
+export class SmartNewsletterPlanification_emailsModule {}

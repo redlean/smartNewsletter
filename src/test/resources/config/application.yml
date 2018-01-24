@@ -16,14 +16,14 @@
 
 spring:
     application:
-        name: smartNews
+        name: smart_newsletter
     jackson:
         serialization.write_dates_as_timestamps: false
     cache:
-        type: none
+        type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:smartNews;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:smart_newsletter;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
@@ -88,7 +88,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 70c60b4fd5af77e96dca1ae1db45fada73d05032
+                secret: aebf9d91927101350ceac8301c3c1f3147470e0e
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

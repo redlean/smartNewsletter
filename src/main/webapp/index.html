@@ -4,7 +4,7 @@
     <base href="./" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>smartNews</title>
+    <title>smart_newsletter</title>
     <meta name="description" content="">
     <meta name="google" value="notranslate">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,12 @@
     <script src="https://cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.5.7/full/adapters/jquery.js"></script>
+    <script>
+        // load extra ckeditor plugins
+        CKEDITOR.plugins.addExternal('simpleuploads', '/js/ckeditor/plugins/simpleuploads/plugin.js');
+        CKEDITOR.plugins.addExternal('imagesfromword', '/js/ckeditor/plugins/imagesfromword/plugin.js');
+    </script>
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
 </head>
 <body>

@@ -1,11 +1,11 @@
 version: '2'
 services:
-    smartnews-postgresql:
+    smart_newsletter-postgresql:
         image: postgres:9.6.5
         # volumes:
-        #     - ~/volumes/jhipster/smartNews/postgresql/:/var/lib/postgresql/data/
+        #     - ~/volumes/jhipster/smart_newsletter/postgresql/:/var/lib/postgresql/data/
         environment:
-            - POSTGRES_USER=smartNews
+            - POSTGRES_USER=smart_newsletter
             - POSTGRES_PASSWORD=
         ports:
             - 5432:5432

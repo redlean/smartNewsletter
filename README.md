@@ -1,5 +1,5 @@
-# smartNews
-This application was generated using JHipster 4.11.1, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.11.1](http://www.jhipster.tech/documentation-archive/v4.11.1).
+# smart_newsletter
+This application was generated using JHipster 4.13.2, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.13.2](http://www.jhipster.tech/documentation-archive/v4.13.2).
 
 ## Development
 
@@ -21,7 +21,7 @@ We use yarn scripts and [Webpack][] as our build system.
 Run the following commands in two separate terminals to create a blissful development experience where your browser
 auto-refreshes when files change on your hard drive.
 
-    ./gradlew
+    ./mvnw
     yarn start
 
 [Yarn][] is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
@@ -35,7 +35,8 @@ The `yarn run` command will list all of the scripts available to run for this pr
 Service workers are commented by default, to enable them please uncomment the following code.
 
 * The service worker registering script in index.html
-```
+
+```html
 <script>
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
@@ -44,11 +45,8 @@ Service workers are commented by default, to enable them please uncomment the fo
     }
 </script>
 ```
-* The copy file option in webpack-common.js
-```js
-{ from: './src/main/webapp/sw.js', to: 'sw.js' },
-```
-Note: Add the respective scripts/assets in `sw.js` that is needed to be cached.
+
+Note: workbox creates the respective service worker and dynamically generate the `sw.js`
 
 ### Managing dependencies
 
@@ -91,14 +89,14 @@ will generate few files:
 
 ## Building for production
 
-To optimize the smartNews application for production, run:
+To optimize the smart_newsletter application for production, run:
 
-    ./gradlew -Pprod clean bootRepackage
+    ./mvnw -Pprod clean package
 
 This will concatenate and minify the client CSS and JavaScript files. It will also modify `index.html` so it references these new files.
 To ensure everything worked, run:
 
-    java -jar build/libs/*.war
+    java -jar target/*.war
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
@@ -108,7 +106,7 @@ Refer to [Using JHipster in production][] for more details.
 
 To launch your application's tests, run:
 
-    ./gradlew test
+    ./mvnw clean test
 
 ### Client tests
 
@@ -117,12 +115,18 @@ Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in
     yarn test
 
 
+### Other tests
+
+Performance tests are run by [Gatling][] and written in Scala. They're located in [src/test/gatling](src/test/gatling) and can be run with:
+
+    ./mvnw gatling:execute
 
 For more information, refer to the [Running tests page][].
 
 ## Using Docker to simplify development (optional)
 
 You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
+
 For example, to start a postgresql database in a docker container, run:
 
     docker-compose -f src/main/docker/postgresql.yml up -d
@@ -134,7 +138,7 @@ To stop it and remove the container, run:
 You can also fully dockerize your application and all the services that it depends on.
 To achieve this, first build a docker image of your app by running:
 
-    ./gradlew bootRepackage -Pprod buildDocker
+    ./mvnw verify -Pprod dockerfile:build
 
 Then run:
 
@@ -147,15 +151,15 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
 [JHipster Homepage and latest documentation]: http://www.jhipster.tech
-[JHipster 4.11.1 archive]: http://www.jhipster.tech/documentation-archive/v4.11.1
+[JHipster 4.13.2 archive]: http://www.jhipster.tech/documentation-archive/v4.13.2
 
-[Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.11.1/development/
-[Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.11.1/docker-compose
-[Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.11.1/production/
-[Running tests page]: http://www.jhipster.tech/documentation-archive/v4.11.1/running-tests/
-[Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.11.1/setting-up-ci/
+[Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.13.2/development/
+[Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.13.2/docker-compose
+[Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.13.2/production/
+[Running tests page]: http://www.jhipster.tech/documentation-archive/v4.13.2/running-tests/
+[Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.13.2/setting-up-ci/
 
-
+[Gatling]: http://gatling.io/
 [Node.js]: https://nodejs.org/
 [Yarn]: https://yarnpkg.org/
 [Webpack]: https://webpack.github.io/

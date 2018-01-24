@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { DatePipe } from '@angular/common';
 import { NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
-import { JhiParseLinks } from 'ng-jhipster';
-import { SmartNewsTestModule } from '../../../test.module';
+
+import { SmartNewsletterTestModule } from '../../../test.module';
 import { PaginationConfig } from '../../../../../../main/webapp/app/blocks/config/uib-pagination.config'
 import { AuditsComponent } from '../../../../../../main/webapp/app/admin/audits/audits.component';
 import { AuditsService } from '../../../../../../main/webapp/app/admin/audits/audits.service';
@@ -21,7 +20,8 @@ function getDate(isToday= true) {
         date = new Date(date.getFullYear(), date.getMonth() - 1, date.getDate());
       }
     }
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    const dateString = date.getDate() < 10 ? '0' + date.getDate() : '' + date.getDate();
+    return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${dateString}`;
 }
 
 describe('Component Tests', () => {
@@ -34,16 +34,15 @@ describe('Component Tests', () => {
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                imports: [SmartNewsTestModule],
+                imports: [SmartNewsletterTestModule],
                 declarations: [AuditsComponent],
                 providers: [
                     AuditsService,
                     NgbPaginationConfig,
-                    JhiParseLinks,
-                    PaginationConfig,
-                    DatePipe
+                    PaginationConfig
                 ]
-            }).overrideTemplate(AuditsComponent, '')
+            })
+            .overrideTemplate(AuditsComponent, '')
             .compileComponents();
         }));
 

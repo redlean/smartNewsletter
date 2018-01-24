@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
 import { Email } from './email.model';
@@ -9,7 +9,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 @Injectable()
 export class EmailService {
 
-    private resourceUrl = SERVER_API_URL + 'api/emails';
+    private resourceUrl =  SERVER_API_URL + 'api/emails';
 
     constructor(private http: Http) { }
 
