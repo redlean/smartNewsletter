@@ -1,6 +1,6 @@
 package com.redlean.news.web.rest;
 
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import com.redlean.news.domain.User;
 import com.redlean.news.repository.UserRepository;
 import com.redlean.news.security.jwt.TokenProvider;
@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.not;
  * @see UserJWTController
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 public class UserJWTControllerIntTest {
 
     @Autowired

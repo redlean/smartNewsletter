@@ -1,0 +1,26 @@
+{
+    "smartNewsletterApp": {
+        "planification_emails" : {
+            "home": {
+                "title": "Planification_emails",
+                "createLabel": "Créer un nouveau Planification Emails",
+                "createOrEditLabel": "Créer ou éditer un Planification Emails"
+            },
+            "created": "Un nouveau Planification Emails a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Planification Emails avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Planification Emails avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Planification Emails {{ id }} ?"
+            },
+            "detail": {
+                "title": "Planification des Emails"
+            },
+            "planifName": "Nom de la planification ",
+            "expediteur": "Expediteur",
+            "destinataire": "Destinataire",
+            "status": "Statut",
+            "datePlanif": "Date d'envoi",
+            "planifForEmail": "Email"
+        }
+    }
+}

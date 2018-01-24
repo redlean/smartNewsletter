@@ -1,8 +1,10 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
+import locale from '@angular/common/locales/fr';
 
 import {
-    SmartNewsSharedLibsModule,
+    SmartNewsletterSharedLibsModule,
     JhiLanguageHelper,
     FindLanguageFromKeyPipe,
     JhiAlertComponent,
@@ -11,7 +13,7 @@ import {
 
 @NgModule({
     imports: [
-        SmartNewsSharedLibsModule
+        SmartNewsletterSharedLibsModule
     ],
     declarations: [
         FindLanguageFromKeyPipe,
@@ -27,10 +29,14 @@ import {
         },
     ],
     exports: [
-        SmartNewsSharedLibsModule,
+        SmartNewsletterSharedLibsModule,
         FindLanguageFromKeyPipe,
         JhiAlertComponent,
         JhiAlertErrorComponent
     ]
 })
-export class SmartNewsSharedCommonModule {}
+export class SmartNewsletterSharedCommonModule {
+    constructor() {
+        registerLocaleData(locale);
+    }
+}

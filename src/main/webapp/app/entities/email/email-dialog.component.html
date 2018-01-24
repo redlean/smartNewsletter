@@ -1,19 +1,19 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myEmailLabel" jhiTranslate="smartNewsApp.email.home.createOrEditLabel">Create or edit a Email</h4>
+        <h4 class="modal-title" id="myEmailLabel" jhiTranslate="smartNewsletterApp.email.home.createOrEditLabel">Create or edit a Email</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!email.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="email.id" readonly />
-        </div>
+        <!--<div class="form-group" [hidden]="!email.id">-->
+            <!--<label for="id" jhiTranslate="global.field.id">ID</label>-->
+            <!--<input type="text" class="form-control" id="id" name="id"-->
+                   <!--[(ngModel)]="email.id" readonly />-->
+        <!--</div>-->
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsApp.email.objet" for="field_objet">Objet</label>
+            <label class="form-control-label" jhiTranslate="smartNewsletterApp.email.objet" for="field_objet">Objet</label>
             <input type="text" class="form-control" name="objet" id="field_objet"
                 [(ngModel)]="email.objet" required/>
             <div [hidden]="!(editForm.controls.objet?.dirty && editForm.controls.objet?.invalid)">
@@ -24,32 +24,66 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsApp.email.contenu" for="field_contenu">Contenu</label>
-            <input type="text" class="form-control" name="objet" id="field_contenu"
-                   [(ngModel)]="email.contenu" required/>
-            <!--<ckeditor [(ngModel)]="email.contenu" name="contenu" id="field_contenu" debounce="500">-->
-            <!--</ckeditor>-->
+            <label class="form-control-label" jhiTranslate="smartNewsletterApp.email.contenu" for="field_contenu">Contenu</label>
+            <ckeditor [(ngModel)]="email.contenu" name="contenu"  [config]="{
+                                    toolbarGroups:[
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'links', groups: [ 'links' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
+		{ name: 'forms', groups: [ 'forms' ] },
+		{ name: 'tools', groups: [ 'tools' ] },
+		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'others', groups: [ 'others' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'styles', groups: [ 'styles' ] },
+		{ name: 'colors', groups: [ 'colors' ] },
+		{ name: 'about', groups: [ 'about' ] }
+	]  }" id="field_contenu" debounce="500">
+                <!--<ckbutton [name]="'imageExplorer'"-->
+                          <!--[command]="'openImageExplorer'"-->
+                          <!--(click)="openImageExplorer($event)"-->
+                          <!--[icon]="'./images/Icon.png'"-->
+                          <!--[label]="'Open image explorer'"-->
+                          <!--[toolbar]="'insert,1'">-->
+                <!--</ckbutton>-->
+            </ckeditor>
+            <!--<app-dialog-modal *ngIf="showFiles"-->
+                              <!--[visible]="showFiles"-->
+                              <!--(onDecline)="onCloseImage()"-->
+                              <!--(onConfirm)="onAddImage()">-->
+            <!--</app-dialog-modal>-->
             <!--<div [innerHTML]="email.contenu"></div>-->
             <div [hidden]="!(editForm.controls.contenu?.dirty && editForm.controls.contenu?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.contenu?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
+                       [hidden]="!editForm.controls.contenu?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
                 </small>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsApp.email.pieceJoint" for="field_pieceJoint">Joindre des fichiers</label><br/>
+        <!--<div class="form-group">-->
+            <!--<label class="form-control-label" jhiTranslate="smartNewsletterApp.email.contenu" for="field_contenu">Contenu</label>-->
+            <!--<textarea ckeditor class="form-control" name="contenu" id="field_contenu"-->
+                <!--[(ngModel)]="email.contenu" required rows="18" cols="70"></textarea>-->
+            <!--<div [innerHTML]="email.contenu"></div>-->
+            <!--<div [hidden]="!(editForm.controls.contenu?.dirty && editForm.controls.contenu?.invalid)">-->
+                <!--<small class="form-text text-danger"-->
+                   <!--[hidden]="!editForm.controls.contenu?.errors?.required" jhiTranslate="entity.validation.required">-->
+                   <!--This field is required.-->
+                <!--</small>-->
+            <!--</div>-->
+        <!--</div>-->
 
-            <!--<label class="btn btn-primary">-->
-            <!--Joindre des fichiers&hellip; <input id="field_pieceJoint"  type="file"/>-->
-            <!--</label>-->
-        </div>
-        <div class="form-group">
-            <div class="input-group input-file" name="Fichier1">
-                <!--<input type="text" class="form-control" placeholder='Choose a file...' />-->
-        		 <input type="file" id="field_pieceJoint" [(ngModel)]="email.pieceJoint" name="pieceJoint" id="field_pieceJoint" multiple/><br/>
-            </div>
-        </div>
+
+        <!--<div class="form-group">-->
+            <!--<label class="form-control-label" jhiTranslate="smartNewsletterApp.email.pieceJoint" for="field_pieceJoint">Joindre une image</label>-->
+            <!--<input type="file" placeholder="Upload file..." class="form-control" name="pieceJoint" id="field_pieceJoint"-->
+                <!--[(ngModel)]="email.pieceJoint" />-->
+
+        <!--</div>-->
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

@@ -1,0 +1,26 @@
+{
+    "smartNewsletterApp": {
+        "planification_emails" : {
+            "home": {
+                "title": "Email scheduling",
+                "createLabel": "Create a new Planification Emails",
+                "createOrEditLabel": "Create or edit a Planification Emails"
+            },
+            "created": "A new Planification Emails is created with identifier {{ param }}",
+            "updated": "A Planification Emails is updated with identifier {{ param }}",
+            "deleted": "A Planification Emails is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Planification Emails {{ id }}?"
+            },
+            "detail": {
+                "title": "Email scheduling"
+            },
+            "planifName": "Planning's Name",
+            "expediteur": "Sender",
+            "destinataire": "Recipient",
+            "status": "Status",
+            "datePlanif": "Sending date",
+            "planifForEmail": "Email"
+        }
+    }
+}

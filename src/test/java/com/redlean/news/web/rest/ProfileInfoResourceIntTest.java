@@ -1,7 +1,7 @@
 package com.redlean.news.web.rest;
 
 import io.github.jhipster.config.JHipsterProperties;
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see ProfileInfoResource
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 public class ProfileInfoResourceIntTest {
 
     @Mock

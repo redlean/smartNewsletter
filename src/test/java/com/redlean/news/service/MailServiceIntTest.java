@@ -1,7 +1,7 @@
 package com.redlean.news.service;
 import com.redlean.news.config.Constants;
 
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import com.redlean.news.domain.User;
 import io.github.jhipster.config.JHipsterProperties;
 import org.junit.Before;
@@ -30,7 +30,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 public class MailServiceIntTest {
 
     @Autowired

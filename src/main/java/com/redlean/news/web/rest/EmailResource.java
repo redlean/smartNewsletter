@@ -2,7 +2,8 @@ package com.redlean.news.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.redlean.news.domain.Email;
-import com.redlean.news.service.EmailService;
+
+import com.redlean.news.repository.EmailRepository;
 import com.redlean.news.web.rest.errors.BadRequestAlertException;
 import com.redlean.news.web.rest.util.HeaderUtil;
 import com.redlean.news.web.rest.util.PaginationUtil;
@@ -34,10 +35,10 @@ public class EmailResource {
 
     private static final String ENTITY_NAME = "email";
 
-    private final EmailService emailService;
+    private final EmailRepository emailRepository;
 
-    public EmailResource(EmailService emailService) {
-        this.emailService = emailService;
+    public EmailResource(EmailRepository emailRepository) {
+        this.emailRepository = emailRepository;
     }
 
     /**
@@ -54,7 +55,7 @@ public class EmailResource {
         if (email.getId() != null) {
             throw new BadRequestAlertException("A new email cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Email result = emailService.save(email);
+        Email result = emailRepository.save(email);
         return ResponseEntity.created(new URI("/api/emails/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -76,7 +77,7 @@ public class EmailResource {
         if (email.getId() == null) {
             return createEmail(email);
         }
-        Email result = emailService.save(email);
+        Email result = emailRepository.save(email);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, email.getId().toString()))
             .body(result);
@@ -92,7 +93,7 @@ public class EmailResource {
     @Timed
     public ResponseEntity<List<Email>> getAllEmails(Pageable pageable) {
         log.debug("REST request to get a page of Emails");
-        Page<Email> page = emailService.findAll(pageable);
+        Page<Email> page = emailRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/emails");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -107,7 +108,7 @@ public class EmailResource {
     @Timed
     public ResponseEntity<Email> getEmail(@PathVariable Long id) {
         log.debug("REST request to get Email : {}", id);
-        Email email = emailService.findOne(id);
+        Email email = emailRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(email));
     }
 
@@ -121,7 +122,7 @@ public class EmailResource {
     @Timed
     public ResponseEntity<Void> deleteEmail(@PathVariable Long id) {
         log.debug("REST request to delete Email : {}", id);
-        emailService.delete(id);
+        emailRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 }

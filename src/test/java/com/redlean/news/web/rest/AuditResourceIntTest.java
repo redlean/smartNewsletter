@@ -1,6 +1,6 @@
 package com.redlean.news.web.rest;
 
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import com.redlean.news.config.audit.AuditEventConverter;
 import com.redlean.news.domain.PersistentAuditEvent;
 import com.redlean.news.repository.PersistenceAuditEventRepository;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AuditResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 @Transactional
 public class AuditResourceIntTest {
 

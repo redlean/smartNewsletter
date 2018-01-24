@@ -1,4 +1,4 @@
-<form name="deleteForm" (ngSubmit)="confirmDelete(planificationEmails.id)">
+<form name="deleteForm" (ngSubmit)="confirmDelete(planification_emails.id)">
     <div class="modal-header">
         <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
@@ -6,7 +6,7 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p jhiTranslate="smartNewsApp.planificationEmails.delete.question" translateValues="{id: '{{planificationEmails.id}}'}">Are you sure you want to delete this Planification Emails?</p>
+        <p jhiTranslate="smartNewsletterApp.planification_emails.delete.question" translateValues="{id: '{{planification_emails.id}}'}">Are you sure you want to delete this Planification Emails?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

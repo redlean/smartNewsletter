@@ -4,20 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { PlanificationEmails } from './planification-emails.model';
-import { PlanificationEmailsPopupService } from './planification-emails-popup.service';
-import { PlanificationEmailsService } from './planification-emails.service';
+import { Planification_emails } from './planification-emails.model';
+import { Planification_emailsPopupService } from './planification-emails-popup.service';
+import { Planification_emailsService } from './planification-emails.service';
 
 @Component({
     selector: 'jhi-planification-emails-delete-dialog',
     templateUrl: './planification-emails-delete-dialog.component.html'
 })
-export class PlanificationEmailsDeleteDialogComponent {
+export class Planification_emailsDeleteDialogComponent {
 
-    planificationEmails: PlanificationEmails;
+    planification_emails: Planification_emails;
 
     constructor(
-        private planificationEmailsService: PlanificationEmailsService,
+        private planification_emailsService: Planification_emailsService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
     ) {
@@ -28,10 +28,10 @@ export class PlanificationEmailsDeleteDialogComponent {
     }
 
     confirmDelete(id: number) {
-        this.planificationEmailsService.delete(id).subscribe((response) => {
+        this.planification_emailsService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
-                name: 'planificationEmailsListModification',
-                content: 'Deleted an planificationEmails'
+                name: 'planification_emailsListModification',
+                content: 'Deleted an planification_emails'
             });
             this.activeModal.dismiss(true);
         });
@@ -42,19 +42,19 @@ export class PlanificationEmailsDeleteDialogComponent {
     selector: 'jhi-planification-emails-delete-popup',
     template: ''
 })
-export class PlanificationEmailsDeletePopupComponent implements OnInit, OnDestroy {
+export class Planification_emailsDeletePopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private planificationEmailsPopupService: PlanificationEmailsPopupService
+        private planification_emailsPopupService: Planification_emailsPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.planificationEmailsPopupService
-                .open(PlanificationEmailsDeleteDialogComponent as Component, params['id']);
+            this.planification_emailsPopupService
+                .open(Planification_emailsDeleteDialogComponent as Component, params['id']);
         });
     }
 

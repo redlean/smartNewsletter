@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { Email } from './email.model';
@@ -11,7 +11,6 @@ import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
     selector: 'jhi-email',
     templateUrl: './email.component.html'
 })
-
 export class EmailComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
@@ -40,10 +39,10 @@ currentAccount: any;
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
-            this.page = data['pagingParams'].page;
-            this.previousPage = data['pagingParams'].page;
-            this.reverse = data['pagingParams'].ascending;
-            this.predicate = data['pagingParams'].predicate;
+            this.page = data.pagingParams.page;
+            this.previousPage = data.pagingParams.page;
+            this.reverse = data.pagingParams.ascending;
+            this.predicate = data.pagingParams.predicate;
         });
     }
 
@@ -118,5 +117,4 @@ currentAccount: any;
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }
-
 }

@@ -2,19 +2,18 @@ import './vendor.ts';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Ng2Webstorage } from 'ng2-webstorage';
-
-import { SmartNewsSharedModule, UserRouteAccessService } from './shared';
-import { SmartNewsAppRoutingModule} from './app-routing.module';
-import { SmartNewsHomeModule } from './home/home.module';
-import { SmartNewsAdminModule } from './admin/admin.module';
-import { SmartNewsAccountModule } from './account/account.module';
-import { SmartNewsEntityModule } from './entities/entity.module';
+import { Ng2Webstorage } from 'ngx-webstorage';
+import { ImageUploadModule } from "angular2-image-upload";
+import { SmartNewsletterSharedModule, UserRouteAccessService } from './shared';
+import { SmartNewsletterAppRoutingModule} from './app-routing.module';
+import { SmartNewsletterHomeModule } from './home/home.module';
+import { SmartNewsletterAdminModule } from './admin/admin.module';
+import { SmartNewsletterAccountModule } from './account/account.module';
+import { SmartNewsletterEntityModule } from './entities/entity.module';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
-
+import { CKEditorModule } from 'ng2-ckeditor';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-
 import {
     JhiMainComponent,
     NavbarComponent,
@@ -25,16 +24,19 @@ import {
     ErrorComponent
 } from './layouts';
 
+
 @NgModule({
     imports: [
         BrowserModule,
-        SmartNewsAppRoutingModule,
+        SmartNewsletterAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
-        SmartNewsSharedModule,
-        SmartNewsHomeModule,
-        SmartNewsAdminModule,
-        SmartNewsAccountModule,
-        SmartNewsEntityModule,
+        SmartNewsletterSharedModule,
+        SmartNewsletterHomeModule,
+        SmartNewsletterAdminModule,
+        SmartNewsletterAccountModule,
+        SmartNewsletterEntityModule,
+        ImageUploadModule.forRoot(),
+        CKEditorModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -53,4 +55,4 @@ import {
     ],
     bootstrap: [ JhiMainComponent ]
 })
-export class SmartNewsAppModule {}
+export class SmartNewsletterAppModule {}

@@ -1,7 +1,7 @@
 package com.redlean.news.web.rest;
 
 import com.redlean.news.config.Constants;
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import com.redlean.news.domain.Authority;
 import com.redlean.news.domain.User;
 import com.redlean.news.repository.AuthorityRepository;
@@ -49,7 +49,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see AccountResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 public class AccountResourceIntTest {
 
     @Autowired
@@ -170,6 +170,7 @@ public class AccountResourceIntTest {
         validUser.setImageUrl("http://placehold.it/50x50");
         validUser.setLangKey(Constants.DEFAULT_LANGUAGE);
         validUser.setAuthorities(Collections.singleton(AuthoritiesConstants.USER));
+        assertThat(userRepository.findOneByLogin("joe").isPresent()).isFalse();
 
         restMvc.perform(
             post("/api/register")
@@ -177,8 +178,7 @@ public class AccountResourceIntTest {
                 .content(TestUtil.convertObjectToJsonBytes(validUser)))
             .andExpect(status().isCreated());
 
-        Optional<User> user = userRepository.findOneByLogin("joe");
-        assertThat(user.isPresent()).isTrue();
+        assertThat(userRepository.findOneByLogin("joe").isPresent()).isTrue();
     }
 
     @Test

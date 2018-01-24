@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
 import { JhiPaginationUtil } from 'ng-jhipster';
 
-import { PlanificationEmailsComponent } from './planification-emails.component';
-import { PlanificationEmailsDetailComponent } from './planification-emails-detail.component';
-import { PlanificationEmailsPopupComponent } from './planification-emails-dialog.component';
-import { PlanificationEmailsDeletePopupComponent } from './planification-emails-delete-dialog.component';
+import { UserRouteAccessService } from '../../shared';
+import { Planification_emailsComponent } from './planification-emails.component';
+import { Planification_emailsDetailComponent } from './planification-emails-detail.component';
+import { Planification_emailsPopupComponent } from './planification-emails-dialog.component';
+import { Planification_emailsDeletePopupComponent } from './planification-emails-delete-dialog.component';
 
 @Injectable()
-export class PlanificationEmailsResolvePagingParams implements Resolve<any> {
+export class Planification_emailsResolvePagingParams implements Resolve<any> {
 
     constructor(private paginationUtil: JhiPaginationUtil) {}
 
@@ -25,66 +24,56 @@ export class PlanificationEmailsResolvePagingParams implements Resolve<any> {
     }
 }
 
-export const planificationEmailsRoute: Routes = [
+export const planification_emailsRoute: Routes = [
     {
         path: 'planification-emails',
-        component: PlanificationEmailsComponent,
+        component: Planification_emailsComponent,
         resolve: {
-            'pagingParams': PlanificationEmailsResolvePagingParams
+            'pagingParams': Planification_emailsResolvePagingParams
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.planificationEmails.home.title'
+            pageTitle: 'smartNewsletterApp.planification_emails.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
         path: 'planification-emails/:id',
-        component: PlanificationEmailsDetailComponent,
+        component: Planification_emailsDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.planificationEmails.home.title'
+            pageTitle: 'smartNewsletterApp.planification_emails.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
 ];
 
-export const planificationEmailsPopupRoute: Routes = [
+export const planification_emailsPopupRoute: Routes = [
     {
         path: 'planification-emails-new',
-        component: PlanificationEmailsPopupComponent,
+        component: Planification_emailsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.planificationEmails.home.title'
+            pageTitle: 'smartNewsletterApp.planification_emails.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
     {
         path: 'planification-emails/:id/edit',
-        component: PlanificationEmailsPopupComponent,
+        component: Planification_emailsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.planificationEmails.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    },
-    {
-        path: 'planification-emails/:id/validate',
-        component: PlanificationEmailsDetailComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.planificationEmails.home.title'
+            pageTitle: 'smartNewsletterApp.planification_emails.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
     {
         path: 'planification-emails/:id/delete',
-        component: PlanificationEmailsDeletePopupComponent,
+        component: Planification_emailsDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.planificationEmails.home.title'
+            pageTitle: 'smartNewsletterApp.planification_emails.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

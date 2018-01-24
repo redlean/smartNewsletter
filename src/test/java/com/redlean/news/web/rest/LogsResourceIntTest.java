@@ -1,6 +1,6 @@
 package com.redlean.news.web.rest;
 
-import com.redlean.news.SmartNewsApp;
+import com.redlean.news.SmartNewsletterApp;
 import com.redlean.news.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see LogsResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = SmartNewsApp.class)
+@SpringBootTest(classes = SmartNewsletterApp.class)
 public class LogsResourceIntTest {
 
     private MockMvc restLogsMockMvc;

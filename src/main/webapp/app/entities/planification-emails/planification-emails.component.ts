@@ -1,20 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
-import { PlanificationEmails } from './planification-emails.model';
-import { PlanificationEmailsService } from './planification-emails.service';
+import { Planification_emails } from './planification-emails.model';
+import { Planification_emailsService } from './planification-emails.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-planification-emails',
     templateUrl: './planification-emails.component.html'
 })
-export class PlanificationEmailsComponent implements OnInit, OnDestroy {
+export class Planification_emailsComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
-    planificationEmails: PlanificationEmails[];
+    planification_emails: Planification_emails[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -29,7 +29,7 @@ currentAccount: any;
     reverse: any;
 
     constructor(
-        private planificationEmailsService: PlanificationEmailsService,
+        private planification_emailsService: Planification_emailsService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -39,15 +39,15 @@ currentAccount: any;
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
-            this.page = data['pagingParams'].page;
-            this.previousPage = data['pagingParams'].page;
-            this.reverse = data['pagingParams'].ascending;
-            this.predicate = data['pagingParams'].predicate;
+            this.page = data.pagingParams.page;
+            this.previousPage = data.pagingParams.page;
+            this.reverse = data.pagingParams.ascending;
+            this.predicate = data.pagingParams.predicate;
         });
     }
 
     loadAll() {
-        this.planificationEmailsService.query({
+        this.planification_emailsService.query({
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
@@ -71,9 +71,7 @@ currentAccount: any;
         });
         this.loadAll();
     }
-    send(planificationEmails: PlanificationEmails) {
-        this.planificationEmailsService.sendTo(planificationEmails).subscribe((data) => console.log(data));
-    }
+
     clear() {
         this.page = 0;
         this.router.navigate(['/planification-emails', {
@@ -87,18 +85,18 @@ currentAccount: any;
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
-        this.registerChangeInPlanificationEmails();
+        this.registerChangeInPlanification_emails();
     }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: PlanificationEmails) {
+    trackId(index: number, item: Planification_emails) {
         return item.id;
     }
-    registerChangeInPlanificationEmails() {
-        this.eventSubscriber = this.eventManager.subscribe('planificationEmailsListModification', (response) => this.loadAll());
+    registerChangeInPlanification_emails() {
+        this.eventSubscriber = this.eventManager.subscribe('planification_emailsListModification', (response) => this.loadAll());
     }
 
     sort() {
@@ -114,7 +112,7 @@ currentAccount: any;
         this.totalItems = headers.get('X-Total-Count');
         this.queryCount = this.totalItems;
         // this.page = pagingParams.page;
-        this.planificationEmails = data;
+        this.planification_emails = data;
     }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);

@@ -2,8 +2,8 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "planif",
-            "otherEntityName": "planificationEmails",
+            "relationshipName": "planifForEmail",
+            "otherEntityName": "planification_emails",
             "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "planifForEmail"
         }
@@ -18,19 +18,20 @@
         },
         {
             "fieldName": "contenu",
-            "fieldType": "String",
+            "fieldType": "text",
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
             "fieldName": "pieceJoint",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": []
         }
     ],
-    "changelogDate": "20171228105250",
+    "changelogDate": "20180118160855",
     "dto": "no",
-    "service": "serviceClass",
+    "service": "no",
     "entityTableName": "email",
     "jpaMetamodelFiltering": false,
     "pagination": "pagination"

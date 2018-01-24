@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
 import { JhiPaginationUtil } from 'ng-jhipster';
 
+import { UserRouteAccessService } from '../../shared';
 import { EmailComponent } from './email.component';
 import { EmailDetailComponent } from './email-detail.component';
 import { EmailPopupComponent } from './email-dialog.component';
@@ -34,7 +33,7 @@ export const emailRoute: Routes = [
         },
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.email.home.title'
+            pageTitle: 'smartNewsletterApp.email.home.title'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -42,7 +41,7 @@ export const emailRoute: Routes = [
         component: EmailDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.email.home.title'
+            pageTitle: 'smartNewsletterApp.email.home.title'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -54,7 +53,7 @@ export const emailPopupRoute: Routes = [
         component: EmailPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.email.home.title'
+            pageTitle: 'smartNewsletterApp.email.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -64,7 +63,7 @@ export const emailPopupRoute: Routes = [
         component: EmailPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.email.home.title'
+            pageTitle: 'smartNewsletterApp.email.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -74,7 +73,7 @@ export const emailPopupRoute: Routes = [
         component: EmailDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'smartNewsApp.email.home.title'
+            pageTitle: 'smartNewsletterApp.email.home.title'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
