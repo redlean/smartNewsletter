@@ -4,7 +4,6 @@ import com.codahale.metrics.annotation.Timed;
 import com.redlean.news.domain.Planification_emails;
 
 import com.redlean.news.repository.Planification_emailsRepository;
-import com.redlean.news.service.AppConfig;
 import com.redlean.news.service.PlanificationEmailsService;
 import com.redlean.news.web.rest.errors.BadRequestAlertException;
 import com.redlean.news.web.rest.util.HeaderUtil;
