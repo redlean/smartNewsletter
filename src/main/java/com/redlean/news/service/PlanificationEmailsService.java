@@ -104,7 +104,7 @@ public class PlanificationEmailsService {
                 Session session = Session.getInstance(props,
                     new Authenticator() {
                         protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("******","*****");
+                            return new PasswordAuthentication("abir.bouchnak@redlean.io","besm allah 1234.");
                         }
                     });
 
