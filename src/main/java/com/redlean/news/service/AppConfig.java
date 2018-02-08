@@ -1,27 +1,31 @@
 package com.redlean.news.service;
 
+import com.redlean.news.domain.CompteConfig;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 import java.util.Properties;
 
-//@Configurable
-//public class AppConfig {
-//    @Bean
-//    public JavaMailSenderImpl javaMailSenderImpl(){
-//        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-//        mailSender.setHost("smtp.gmail.com");
-//        mailSender.setPort(587);
-//        //Set gmail email id
-//        mailSender.setUsername("test.app.test.ab@gmail.com");
-//        //Set gmail email password
-//        mailSender.setPassword("testtestab");
-//        Properties prop = mailSender.getJavaMailProperties();
-//        prop.put("mail.transport.protocol", "smtp");
-//        prop.put("mail.smtp.auth", "true");
-//        prop.put("mail.smtp.starttls.enable", "true");
-//        prop.put("mail.debug", "true");
-//        return mailSender;
-//    }
-//}
+@Configurable
+public class AppConfig {
+    @Bean
+    public Session getAppconfig(CompteConfig compteConfig ) {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.debug", "true");
+        Session session = Session.getInstance(props,
+            new Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(compteConfig.getEmail(), compteConfig.getPassword());
+                }
+            });
+        return session;
+    }
+}

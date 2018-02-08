@@ -18,7 +18,6 @@ import { ResponseWrapper } from '../../shared';
 })
 
 export class Planification_emailsDialogComponent implements OnInit {
-
     planification_emails: Planification_emails;
     isSaving: boolean;
 

@@ -38,6 +38,6 @@
       "fr",
       "en"
     ],
-    "herokuAppName": null
+    "herokuAppName": "smart-newsletter"
   }
 }

@@ -23,21 +23,21 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.expediteur" for="field_expediteur">Expediteur</label>
-            <input type="email" class="form-control" name="expediteur" id="field_expediteur"
-                [(ngModel)]="planification_emails.expediteur" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required/>
-            <div [hidden]="!(editForm.controls.expediteur?.dirty && editForm.controls.expediteur?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.expediteur?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <!--<div role="alert">-->
-                    <!--<span class="error" ng-show="myForm.input.$error.email">-->
-        <!--Please provide a valid email address!</span>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.expediteur" for="field_expediteur">Expediteur</label>-->
+            <!--<input type="email" class="form-control" name="expediteur" id="field_expediteur"-->
+                <!--[(ngModel)]="planification_emails.expediteur" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required/>-->
+            <!--<div [hidden]="!(editForm.controls.expediteur?.dirty && editForm.controls.expediteur?.invalid)">-->
+                <!--<small class="form-text text-danger"-->
+                   <!--[hidden]="!editForm.controls.expediteur?.errors?.required" jhiTranslate="entity.validation.required">-->
+                   <!--This field is required.-->
+                <!--</small>-->
+                <!--&lt;!&ndash;<div role="alert">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span class="error" ng-show="myForm.input.$error.email">&ndash;&gt;-->
+        <!--&lt;!&ndash;Please provide a valid email address!</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.destinataire" for="field_destinataire">Destinataire</label>
             <!--<input type="text" class="form-control" name="destinataire" id="field_destinataire"-->
@@ -56,17 +56,6 @@
                 <!--</div>-->
             </div>
         </div>
-        <!--<div class="form-group">-->
-            <!--<label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.status" for="field_status">Status</label>-->
-            <!--<input type="text" class="form-control" name="status" id="field_status"-->
-                <!--[(ngModel)]="planification_emails.status" required/>-->
-            <!--<div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">-->
-                <!--<small class="form-text text-danger"-->
-                   <!--[hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">-->
-                   <!--This field is required.-->
-                <!--</small>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.datePlanif" for="field_datePlanif">Date d'envoi</label>
             <!--<input type="text" class="form-control" name="datePlanif" id="field_datePlanif"-->
