@@ -16,8 +16,8 @@ import { ResponseWrapper } from '../../shared';
     selector: 'jhi-planification-emails-dialog',
     templateUrl: './planification-emails-dialog.component.html'
 })
-
 export class Planification_emailsDialogComponent implements OnInit {
+
     planification_emails: Planification_emails;
     isSaving: boolean;
 
@@ -33,7 +33,6 @@ export class Planification_emailsDialogComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.planification_emails.status = 'Non envoyée';
         this.isSaving = false;
         this.emailService.query()
             .subscribe((res: ResponseWrapper) => { this.emails = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
@@ -72,12 +71,9 @@ export class Planification_emailsDialogComponent implements OnInit {
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
     }
-    trackEmailByObject(index: number, item: Email) {
-        return item.objet;
-    }
 
     trackEmailById(index: number, item: Email) {
-        return item.objet;
+        return item.id;
     }
 }
 

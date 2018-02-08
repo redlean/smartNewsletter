@@ -10,6 +10,7 @@
                 "email": "E-mails",
                 "planificationEmails": "Planification des e-mails",
                 "compteConfig": "Configuration",
+                "planificationEmails": "Planification Emails",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

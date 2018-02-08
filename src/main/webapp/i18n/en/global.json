@@ -13,6 +13,7 @@
                 "config": "Configuration",
                 "config": "Config",
                 "compteConfig": "Configuration du compte",
+                "planificationEmails": "Planification Emails",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

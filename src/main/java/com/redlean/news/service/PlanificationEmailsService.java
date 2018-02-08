@@ -1,6 +1,7 @@
 package com.redlean.news.service;
 import com.redlean.news.domain.CompteConfig;
 import com.redlean.news.domain.Planification_emails;
+import com.redlean.news.repository.CompteConfigRepository;
 import com.redlean.news.repository.Planification_emailsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,11 +38,11 @@ public class PlanificationEmailsService {
 
     private final Logger log = LoggerFactory.getLogger(PlanificationEmailsService.class);
     private Planification_emailsRepository planificationEmailsRepository;
-
-    CompteConfigService compteConfigService;
+    private CompteConfigRepository compteConfigRepository;
    // @Autowired
-    public PlanificationEmailsService(Planification_emailsRepository planificationEmailsRepository) {
+    public PlanificationEmailsService(Planification_emailsRepository planificationEmailsRepository, CompteConfigRepository compteConfigRepository) {
         this.planificationEmailsRepository = planificationEmailsRepository;
+        this.compteConfigRepository = compteConfigRepository;
     }
 
     /**
@@ -72,12 +73,14 @@ public class PlanificationEmailsService {
             System.out.println("Current time with timezone" + planificationEmails.getPlanifName() + todayWithTimeZone);
             if ((dateTimeWithTimeZone.isBefore(todayWithTimeZone)) && (planificationEmails.getStatus().equals("Non envoyée"))) {
                 System.out.println(planificationEmails.getStatus());
-                CompteConfig compteConfig = compteConfigService.findAll().get(0);
+               CompteConfig compteConfig = compteConfigRepository.findAll().get(0);
+
+                System.out.println("compteConfig" + compteConfig);
                Session session = new AppConfig().getAppconfig(compteConfig );
                 System.out.println("session data" + session);
                 try {
                     MimeMessage msg = new MimeMessage(session);
-                    msg.setFrom(planificationEmails.getExpediteur());
+                  //  msg.setFrom(planificationEmails.getExpediteur());
                     msg.setRecipients(Message.RecipientType.TO, planificationEmails.getDestinataire());
                     msg.setSubject(planificationEmails.getPlanifForEmail().getObjet());
                     Multipart multipart = new MimeMultipart();

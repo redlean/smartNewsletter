@@ -68,7 +68,7 @@ class Planification_emailsGatlingTest extends Simulation {
             .exec(http("Create new planification_emails")
             .post("/api/planification-emails")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "planifName":"SAMPLE_TEXT", "expediteur":"SAMPLE_TEXT", "destinataire":"SAMPLE_TEXT", "status":"SAMPLE_TEXT", "datePlanif":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "planifName":"SAMPLE_TEXT", "destinataire":"SAMPLE_TEXT", "status":"SAMPLE_TEXT", "datePlanif":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_planification_emails_url"))).exitHereIfFailed
             .pause(10)

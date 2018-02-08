@@ -1,30 +1,26 @@
 
 <div *ngIf="planification_emails">
-    <h2><span jhiTranslate="smartNewsletterApp.planification_emails.detail.title">Planification des e-mails</span> {{planification_emails.id}}</h2>
+    <h2><span jhiTranslate="smartNewsletterApp.planification_emails.detail.title">Planification Emails</span> {{planification_emails.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.planifName">Nom de la planification</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.planifName">Planif Name</span></dt>
         <dd>
             <span>{{planification_emails.planifName}}</span>
         </dd>
-        <!--<dt><span jhiTranslate="smartNewsletterApp.planification_emails.expediteur">Expediteur</span></dt>-->
-        <!--<dd>-->
-            <!--<span>{{planification_emails.expediteur}}</span>-->
-        <!--</dd>-->
         <dt><span jhiTranslate="smartNewsletterApp.planification_emails.destinataire">Destinataire</span></dt>
         <dd>
             <span>{{planification_emails.destinataire}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.status">Statut</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.status">Status</span></dt>
         <dd>
             <span>{{planification_emails.status}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.datePlanif">Date d'envoi</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.datePlanif">Date Planif</span></dt>
         <dd>
             <span>{{planification_emails.datePlanif}}</span>
         </dd>
-        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.planifForEmail">Email</span></dt>
+        <dt><span jhiTranslate="smartNewsletterApp.planification_emails.planifForEmail">Planif For Email</span></dt>
         <dd>
             <div *ngIf="planification_emails.planifForEmail">
                 <a [routerLink]="['/email', planification_emails.planifForEmail?.id]">{{planification_emails.planifForEmail?.id}}</a>
