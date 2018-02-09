@@ -7,13 +7,8 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!planification_emails.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="planification_emails.id" readonly />
-        </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.planifName" for="field_planifName">Planif Name</label>
+            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.planifName" for="field_planifName">Nom de la planification</label>
             <input type="text" class="form-control" name="planifName" id="field_planifName"
                 [(ngModel)]="planification_emails.planifName" required/>
             <div [hidden]="!(editForm.controls.planifName?.dirty && editForm.controls.planifName?.invalid)">
@@ -25,8 +20,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.destinataire" for="field_destinataire">Destinataire</label>
-            <input type="text" class="form-control" name="destinataire" id="field_destinataire"
-                [(ngModel)]="planification_emails.destinataire" required/>
+            <input type="email" class="form-control" name="destinataire" id="field_destinataire"
+                   [(ngModel)]="planification_emails.destinataire" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required/>
             <div [hidden]="!(editForm.controls.destinataire?.dirty && editForm.controls.destinataire?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.destinataire?.errors?.required" jhiTranslate="entity.validation.required">
@@ -35,14 +30,11 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.status" for="field_status">Status</label>
-            <input type="text" class="form-control" name="status" id="field_status"
-                [(ngModel)]="planification_emails.status" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.datePlanif" for="field_datePlanif">Date Planif</label>
-            <input type="text" class="form-control" name="datePlanif" id="field_datePlanif"
-                [(ngModel)]="planification_emails.datePlanif" required/>
+            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.datePlanif" for="field_datePlanif">Date d'envoi</label>
+            <!--<input type="text" class="form-control" name="datePlanif" id="field_datePlanif"-->
+                <!--[(ngModel)]="planification_emails.datePlanif" required/>-->
+            <input type="datetime-local" placeholder="yyyy-MM-ddTHH:mm:ss" class="form-control" name="datePlanif" id="field_datePlanif"
+                   [(ngModel)]="planification_emails.datePlanif" required/>
             <div [hidden]="!(editForm.controls.datePlanif?.dirty && editForm.controls.datePlanif?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.datePlanif?.errors?.required" jhiTranslate="entity.validation.required">
@@ -50,12 +42,11 @@
                 </small>
             </div>
         </div>
-
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.planifForEmail" for="field_planifForEmail">Planif For Email</label>
+            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.planifForEmail" for="field_planifForEmail">Email</label>
             <select class="form-control" id="field_planifForEmail" name="planifForEmail" [(ngModel)]="planification_emails.planifForEmail"  required>
                 <option *ngIf="!editForm.value.planifForEmail" [ngValue]="null" selected></option>
-                <option [ngValue]="emailOption.id === planification_emails.planifForEmail?.id ? planification_emails.planifForEmail : emailOption" *ngFor="let emailOption of emails; trackBy: trackEmailById">{{emailOption.id}}</option>
+                <option [ngValue]="emailOption.id === planification_emails.planifForEmail?.id ? planification_emails.planifForEmail : emailOption" *ngFor="let emailOption of emails; trackBy: trackEmailById">{{emailOption.objet}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.planifForEmail?.dirty && editForm.controls.planifForEmail?.invalid)">

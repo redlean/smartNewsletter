@@ -34,6 +34,7 @@ export class Planification_emailsDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.planification_emails.status = "Non envoyée";
         this.emailService.query()
             .subscribe((res: ResponseWrapper) => { this.emails = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }

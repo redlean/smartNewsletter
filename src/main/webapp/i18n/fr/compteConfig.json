@@ -1,0 +1,22 @@
+{
+    "smartNewsletterApp": {
+        "compteConfig" : {
+            "home": {
+                "title": "CompteConfigs",
+                "createLabel": "Créer un nouveau Compte Config",
+                "createOrEditLabel": "Créer ou éditer un Compte Config"
+            },
+            "created": "Un nouveau Compte Config a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Compte Config avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Compte Config avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Compte Config {{ id }} ?"
+            },
+            "detail": {
+                "title": "Compte Config"
+            },
+            "email": "Email",
+            "password": "Password"
+        }
+    }
+}
