@@ -27,7 +27,16 @@
         <!-- These remain empty unless the corresponding profile is active -->
         <profile.no-liquibase />
         <profile.swagger />
-
+        <exclusions>
+            <exclusion>
+                <groupid>org.slf4j</groupid>
+                <artifactid>slf4j-log4j12</artifactid>
+            </exclusion>
+            <exclusion>
+                <groupid>log4j</groupid>
+                <artifactid>log4j</artifactid>
+            </exclusion>
+        </exclusions>
         <!-- Dependency versions -->
         <jhipster-dependencies.version>0.1.5</jhipster-dependencies.version>
         <!-- The spring-boot version should match the one managed by
@@ -99,6 +108,7 @@
     </dependencyManagement>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
