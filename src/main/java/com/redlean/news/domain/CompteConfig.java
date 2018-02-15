@@ -3,11 +3,8 @@ package com.redlean.news.domain;
 import org.apache.commons.codec.binary.Base64;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import sun.misc.BASE64Encoder;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
-
 import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

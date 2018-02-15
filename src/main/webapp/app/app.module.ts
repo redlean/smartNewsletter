@@ -3,7 +3,6 @@ import './vendor.ts';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ngx-webstorage';
-import { ImageUploadModule } from "angular2-image-upload";
 import { SmartNewsletterSharedModule, UserRouteAccessService } from './shared';
 import { SmartNewsletterAppRoutingModule} from './app-routing.module';
 import { SmartNewsletterHomeModule } from './home/home.module';
@@ -35,7 +34,6 @@ import {
         SmartNewsletterAdminModule,
         SmartNewsletterAccountModule,
         SmartNewsletterEntityModule,
-        ImageUploadModule.forRoot(),
         CKEditorModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],

@@ -29,9 +29,9 @@
     minimist "^1.2.0"
     rxjs "^5.5.6"
 
-"@angular/animations@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-4.4.6.tgz#fa661899a8a4e38cb7c583c7a5c97ce65d592a35"
+"@angular/animations@^5.2.5":
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.2.5.tgz#3e72184321c4979305619c74902b8be92d76db70"
   dependencies:
     tslib "^1.7.1"
 
@@ -105,12 +105,6 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/common@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.4.6.tgz#4b81420724e0828a0e839b95a55eb1a7e83918f2"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/compiler-cli@5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-5.1.0.tgz#9512abf2515c7d3b7e9ee45650801ee78d63223e"
@@ -126,21 +120,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/compiler@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.4.6.tgz#2ee1faf25b757e1d128979074be7fae529b3bc20"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/core@5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-5.1.0.tgz#6f7596ad780418cecac527ae0508cfc1a36383a0"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/core@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.4.6.tgz#13031fd10dcfe438875419b38f21120958bc2354"
   dependencies:
     tslib "^1.7.1"
 
@@ -150,21 +132,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/forms@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-4.4.6.tgz#fe64ace42435c1b80f49034b7c41ce8caf14a44a"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/http@5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-5.1.0.tgz#59d47c1878896f25e64b9abc700017cff7836710"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/http@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.4.6.tgz#0af680c6710bdc026d940e225cfd0f6a5c005d0c"
   dependencies:
     tslib "^1.7.1"
 
@@ -174,33 +144,15 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser-dynamic@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-4.4.6.tgz#4d3d9a6a7bf2cf3de4058a615ae059eff641fa36"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/platform-browser@5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-5.1.0.tgz#b5373232403d73c355b971cfae8b03191c4f58a2"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-4.4.6.tgz#a9839c547e1b654fa1d24a89780c8ba6ab8dcce0"
-  dependencies:
-    tslib "^1.7.1"
-
 "@angular/router@5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-5.1.0.tgz#4e7283e34cd3d244899b289d835b830640c7bad9"
-  dependencies:
-    tslib "^1.7.1"
-
-"@angular/router@^4.2.4":
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-4.4.6.tgz#0f6ad29ae0ff8d2c9ea379bd320447217b7ec866"
   dependencies:
     tslib "^1.7.1"
 
@@ -371,32 +323,11 @@ angular-resizable-element@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/angular-resizable-element/-/angular-resizable-element-2.0.0.tgz#10a437cce317e459e07c3189519ef395e6b86130"
 
-angular2-image-upload@^1.0.0-rc.0:
-  version "1.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/angular2-image-upload/-/angular2-image-upload-1.0.0-rc.0.tgz#2291b3138cc6ce0e46ee563681f1f27d3dc408d8"
-
 angular2-template-loader@0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/angular2-template-loader/-/angular2-template-loader-0.6.2.tgz#c0d44e90fff0fac95e8b23f043acda7fd1c51d7c"
   dependencies:
     loader-utils "^0.2.15"
-
-angular4-files-upload@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/angular4-files-upload/-/angular4-files-upload-1.0.2.tgz#54c9792674c71e843092d0d289abe2d47554f3a3"
-  dependencies:
-    "@angular/animations" "^4.2.4"
-    "@angular/common" "^4.2.4"
-    "@angular/compiler" "^4.2.4"
-    "@angular/core" "^4.2.4"
-    "@angular/forms" "^4.2.4"
-    "@angular/http" "^4.2.4"
-    "@angular/platform-browser" "^4.2.4"
-    "@angular/platform-browser-dynamic" "^4.2.4"
-    "@angular/router" "^4.2.4"
-    core-js "^2.4.1"
-    rxjs "^5.4.2"
-    zone.js "^0.8.14"
 
 ansi-escapes@^1.1.0:
   version "1.4.0"
@@ -1676,7 +1607,7 @@ core-js@^1.0.0:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
-core-js@^2.2.0, core-js@^2.4.0, core-js@^2.4.1:
+core-js@^2.2.0, core-js@^2.4.0:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.3.tgz#8acc38345824f16d8365b7c9b4259168e8ed603e"
 
@@ -7213,7 +7144,7 @@ rxjs@5.5.5:
   dependencies:
     symbol-observable "1.0.1"
 
-rxjs@^5.4.2, rxjs@^5.5.2, rxjs@^5.5.6:
+rxjs@^5.5.2, rxjs@^5.5.6:
   version "5.5.6"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.6.tgz#e31fb96d6fd2ff1fd84bcea8ae9c02d007179c02"
   dependencies:

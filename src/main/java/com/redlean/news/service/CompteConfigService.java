@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.misc.BASE64Encoder;
 
 import javax.mail.Message;
 import javax.mail.Multipart;
@@ -132,16 +131,16 @@ public class CompteConfigService {
         }
     }
 
-    public String digestMd5(final String password) {
-        String base64;
-        try {
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            digest.update(password.getBytes());
-            base64 = new BASE64Encoder().encode(digest.digest());
-        }
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-        return "{MD5}" + base64;
-    }
+//    public String digestMd5(final String password) {
+//        String base64;
+//        try {
+//            MessageDigest digest = MessageDigest.getInstance("MD5");
+//            digest.update(password.getBytes());
+//            base64 = new BASE64Encoder().encode(digest.digest());
+//        }
+//        catch (NoSuchAlgorithmException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return "{MD5}" + base64;
+//    }
 }
