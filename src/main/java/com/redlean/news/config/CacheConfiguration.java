@@ -46,6 +46,7 @@ public class CacheConfiguration {
             cm.createCache(com.redlean.news.domain.Email.class.getName(), jcacheConfiguration);
             cm.createCache(com.redlean.news.domain.Planification_emails.class.getName(), jcacheConfiguration);
             cm.createCache(com.redlean.news.domain.Email.class.getName() + ".planifForEmails", jcacheConfiguration);
+            cm.createCache(com.redlean.news.domain.CompteConfig.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -25,11 +25,12 @@ spring:
             enabled: false
         livereload:
             enabled: false
-    datasource:
+datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/TestSNL
-        username: postgres
-        password: root
+        url: jdbc:postgresql://ec2-79-125-110-209.eu-west-1.compute.amazonaws.com:5432/d52ek335ti8126?sslmode=require&user=iymnhslgabjrrs&password=8cbb7525310d7d13a57d9cc06c19a5441ee01e0fffe133a034d58347d6584552
+         username: iymnhslgabjrrs
+         password: 8cbb7525310d7d13a57d9cc06c19a5441ee01e0fffe133a034d58347d6584552
+
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

@@ -7,11 +7,6 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <!--<div class="form-group" [hidden]="!planification_emails.id">-->
-            <!--<label for="id" jhiTranslate="global.field.id">ID</label>-->
-            <!--<input type="text" class="form-control" id="id" name="id"-->
-                   <!--[(ngModel)]="planification_emails.id" readonly />-->
-        <!--</div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.planifName" for="field_planifName">Nom de la planification</label>
             <input type="text" class="form-control" name="planifName" id="field_planifName"
@@ -24,64 +19,33 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.expediteur" for="field_expediteur">Expediteur</label>
-            <input type="email" class="form-control" name="expediteur" id="field_expediteur"
-                [(ngModel)]="planification_emails.expediteur" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required/>
-            <div [hidden]="!(editForm.controls.expediteur?.dirty && editForm.controls.expediteur?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.expediteur?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-                <!--<div role="alert">-->
-                    <!--<span class="error" ng-show="myForm.input.$error.email">-->
-        <!--Please provide a valid email address!</span>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.destinataire" for="field_destinataire">Destinataire</label>
-            <!--<input type="text" class="form-control" name="destinataire" id="field_destinataire"-->
-                <!--[(ngModel)]="planification_emails.destinataire" required/>-->
             <input type="email" class="form-control" name="destinataire" id="field_destinataire"
                    [(ngModel)]="planification_emails.destinataire" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required/>
-        </div>
             <div [hidden]="!(editForm.controls.destinataire?.dirty && editForm.controls.destinataire?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.destinataire?.errors?.required" jhiTranslate="entity.validation.required">
                    This field is required.
                 </small>
-                <!--<div role="alert">-->
-                    <!--<span class="error" ng-show="myForm.input.$error.email">-->
-        <!--Please provide a valid email address!</span>-->
-                <!--</div>-->
             </div>
         </div>
-        <!--<div class="form-group">-->
-            <!--<label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.status" for="field_status">Status</label>-->
-            <!--<input type="text" class="form-control" name="status" id="field_status"-->
-                <!--[(ngModel)]="planification_emails.status" required/>-->
-            <!--<div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">-->
-                <!--<small class="form-text text-danger"-->
-                   <!--[hidden]="!editForm.controls.status?.errors?.required" jhiTranslate="entity.validation.required">-->
-                   <!--This field is required.-->
-                <!--</small>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.datePlanif" for="field_datePlanif">Date d'envoi</label>
             <!--<input type="text" class="form-control" name="datePlanif" id="field_datePlanif"-->
                 <!--[(ngModel)]="planification_emails.datePlanif" required/>-->
-            <input type="datetime-local" placeholder="yyyy-MM-ddTHH:mm:ss" class="form-control" name="datePlanif" id="field_datePlanif"
-                   [(ngModel)]="planification_emails.datePlanif" required/>
+            <input  [ngStyle]="{'border-left': ValidateDate(editForm.value.datePlanif) === true ? '5px solid green' : '5px solid red' }" type="datetime-local" placeholder="yyyy-MM-ddTHH:mm:ss" class="form-control" name="datePlanif" id="field_datePlanif"
+                   [(ngModel)]="planification_emails.datePlanif"
+                              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required/>
             <div [hidden]="!(editForm.controls.datePlanif?.dirty && editForm.controls.datePlanif?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.datePlanif?.errors?.required" jhiTranslate="entity.validation.required">
                    This field is required.
                 </small>
-                <!--<div role="alert">-->
-                    <!--<span class="error" ng-show="myForm.input.$error.datetimelocal">-->
-        <!--Not a valid date!</span>-->
-                <!--</div>-->
+            </div>
+            <div *ngIf="editForm.controls.planifForEmail?.valid && ValidateDate(editForm.value.datePlanif)== false">
+                <small class="form-text text-danger">
+                    Veuillez vérifier la date d'envoi de l'e-mail.
+                </small>
             </div>
         </div>
         <div class="form-group">
@@ -102,7 +66,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving || ValidateDate(editForm.value.datePlanif) == false" class="btn btn-primary">
             <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>

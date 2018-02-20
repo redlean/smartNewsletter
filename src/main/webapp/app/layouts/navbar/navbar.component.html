@@ -1,11 +1,11 @@
-<nav class="navbar navbar-dark navbar-expand-md jh-navbar">
-    <div class="jh-logo-container float-left">
-        <a class="jh-navbar-toggler d-lg-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+<div [ngSwitch]="isAuthenticated()">
+<nav *ngSwitchCase="true" class="navbar navbar-dark navbar-expand-md jh-navbar">
+    <div class="jh-logo-container logo-img float-left">
+        <h5>Smart Newsletter</h5>
+    </div>
+    <div class="float-right">
+        <a class="jh-navbar-toggler float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
             <i class="fa fa-bars"></i>
-        </a>
-        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
-            <span class="logo-img"></span>
-            <span jhiTranslate="global.title" class="navbar-title">Smart_newsletter</span> <span class="navbar-version">{{version}}</span>
         </a>
     </div>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
@@ -22,9 +22,9 @@
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
-                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
                         <span jhiTranslate="global.menu.entities.main">
-                            Entities
+                            Gestion des e-mails
                         </span>
                     </span>
                 </a>
@@ -43,6 +43,14 @@
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
+            </li>
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="compte-config" (click)="collapseNavbar()">
+                    <span>
+                        <i class="fa fa-send-o" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.entities.compteConfig">Configuration</span>
+                    </span>
+                </a>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
@@ -97,19 +105,6 @@
                     <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                 </ul>
             </li>
-            <li ngbDropdown class="nav-item dropdown pointer" *ngIf="languages">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown" *ngIf="languages.length > 1">
-                    <span>
-                        <i class="fa fa-flag" aria-hidden="true"></i>
-                        <span jhiTranslate="global.menu.language">Language</span>
-                    </span>
-                </a>
-                <ul class="dropdown-menu" ngbDropdownMenu *ngIf="languages.length > 1">
-                    <li *ngFor="let language of languages">
-                        <a class="dropdown-item" [jhiActiveMenu]="language" href="javascript:void(0);" (click)="changeLanguage(language);collapseNavbar();">{{language | findLanguageFromKey}}</a>
-                    </li>
-                </ul>
-            </li>
             <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                   <span *ngIf="!getImageUrl()">
@@ -158,3 +153,4 @@
         </ul>
     </div>
 </nav>
+</div>

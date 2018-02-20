@@ -1,0 +1,57 @@
+<div>
+<h2>
+    <span jhiTranslate="smartNewsletterApp.compteConfig.home.title">Compte Configs</span>
+</h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div *ngIf="compteConfigs?.length == 0;  else Show">
+        <button class="btn btn-primary float-right jh-create-entity create-compte-config" [routerLink]="['/', { outlets: { popup: ['compte-config-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="smartNewsletterApp.compteConfig.home.createLabel">
+    Create new Compte Config
+    </span>
+        </button>
+    </div>
+    <!--<div *ngIf="compteConfigs">-->
+        <!--<div *ngFor="let compteConfig of compteConfigs ;trackBy: trackId">-->
+
+            <!--<span jhiTranslate="smartNewsletterApp.compteConfig.email">Email</span>-->
+            <!--<span>{{compteConfig.email}}</span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div *ngIf="clicked; else Show">-->
+
+    <ng-template #Show>
+        <div *ngFor="let compteConfig of compteConfigs ;trackBy: trackId" style="text-align: center">
+            <table class="table" style="width: auto">
+                <thead>
+                <th jhiTranslate="smartNewsletterApp.compteConfig.email">Email :</th>
+                </thead>
+                <tbody>
+                <td>
+                    <span>{{compteConfig.email}}</span>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'compte-config/'+ compteConfig.id + '/edit'} }]"
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'compte-config/'+ compteConfig.id + '/delete'} }]"
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-danger btn-sm">
+                        <span class="fa fa-remove"></span>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                </td>
+                </tbody>
+            </table>
+
+        </div>
+    </ng-template>
+</div>

@@ -29,15 +29,10 @@ public class Planification_emails implements Serializable {
     private String planifName;
 
     @NotNull
-    @Column(name = "expediteur", nullable = false)
-    private String expediteur;
-
-    @NotNull
     @Column(name = "destinataire", nullable = false)
     private String destinataire;
 
-    @NotNull
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
     @NotNull
@@ -68,19 +63,6 @@ public class Planification_emails implements Serializable {
 
     public void setPlanifName(String planifName) {
         this.planifName = planifName;
-    }
-
-    public String getExpediteur() {
-        return expediteur;
-    }
-
-    public Planification_emails expediteur(String expediteur) {
-        this.expediteur = expediteur;
-        return this;
-    }
-
-    public void setExpediteur(String expediteur) {
-        this.expediteur = expediteur;
     }
 
     public String getDestinataire() {
@@ -161,7 +143,6 @@ public class Planification_emails implements Serializable {
         return "Planification_emails{" +
             "id=" + getId() +
             ", planifName='" + getPlanifName() + "'" +
-            ", expediteur='" + getExpediteur() + "'" +
             ", destinataire='" + getDestinataire() + "'" +
             ", status='" + getStatus() + "'" +
             ", datePlanif='" + getDatePlanif() + "'" +

@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="smartNewsletterApp.planification_emails.home.title">Planification Emails</span>
-        <button class="btn btn-primary float-right jh-create-entity create-planification-emails" [routerLink]="['/', { outlets: { popup: ['planification-emails-new'] } }]">
+        <button [disabled]="compteConfigs?.length == 0" class="btn btn-primary float-right jh-create-entity create-planification-emails" [routerLink]="['/', { outlets: { popup: ['planification-emails-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="smartNewsletterApp.planification_emails.home.createLabel">
             Create new Planification Emails
@@ -9,6 +9,9 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
+    <div class="alert alert-danger" *ngIf="compteConfigs?.length == 0">
+        <strong>Veuillez ajouter la configuration de votre application avant que vous planifiez l'envoi des e-mails</strong>
+    </div>
     <div class="row">
     </div>
     <br/>
@@ -16,21 +19,19 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <!--<th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>-->
-            <th jhiSortBy="planifName"><span jhiTranslate="smartNewsletterApp.planification_emails.planifName">Nom de la planification</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="expediteur"><span jhiTranslate="smartNewsletterApp.planification_emails.expediteur">Expediteur</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="planifName"><span jhiTranslate="smartNewsletterApp.planification_emails.planifName">Planif Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="destinataire"><span jhiTranslate="smartNewsletterApp.planification_emails.destinataire">Destinataire</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="status"><span jhiTranslate="smartNewsletterApp.planification_emails.status">Statut</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="datePlanif"><span jhiTranslate="smartNewsletterApp.planification_emails.datePlanif">Date d'envoi</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="planifForEmail.id"><span jhiTranslate="smartNewsletterApp.planification_emails.planifForEmail">Email</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="smartNewsletterApp.planification_emails.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="datePlanif"><span jhiTranslate="smartNewsletterApp.planification_emails.datePlanif">Date Planif</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="planifForEmail.id"><span jhiTranslate="smartNewsletterApp.planification_emails.planifForEmail">Planif For Email</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let planification_emails of planification_emails ;trackBy: trackId">
-                <!--<td><a [routerLink]="['../planification-emails', planification_emails.id ]">{{planification_emails.id}}</a></td>-->
+                <td><a [routerLink]="['../planification-emails', planification_emails.id ]">{{planification_emails.id}}</a></td>
                 <td>{{planification_emails.planifName}}</td>
-                <td>{{planification_emails.expediteur}}</td>
                 <td>{{planification_emails.destinataire}}</td>
                 <td>{{planification_emails.status}}</td>
                 <td>{{planification_emails.datePlanif}}</td>
@@ -47,7 +48,7 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button [disabled]="compteConfigs?.length == 0" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'planification-emails/'+ planification_emails.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

@@ -20,13 +20,6 @@
             ]
         },
         {
-            "fieldName": "expediteur",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "destinataire",
             "fieldType": "String",
             "fieldValidateRules": [

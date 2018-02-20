@@ -1,43 +1,29 @@
 package com.redlean.news.service;
+import com.redlean.news.domain.CompteConfig;
 import com.redlean.news.domain.Planification_emails;
+import com.redlean.news.repository.CompteConfigRepository;
 import com.redlean.news.repository.Planification_emailsRepository;
-import com.redlean.news.web.rest.util.HeaderUtil;
-import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.io.File;
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Properties;
-import javax.annotation.PostConstruct;
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Properties;
 
 
 /**
@@ -52,11 +38,11 @@ public class PlanificationEmailsService {
 
     private final Logger log = LoggerFactory.getLogger(PlanificationEmailsService.class);
     private Planification_emailsRepository planificationEmailsRepository;
-
-
+    private CompteConfigRepository compteConfigRepository;
    // @Autowired
-    public PlanificationEmailsService(Planification_emailsRepository planificationEmailsRepository) {
+    public PlanificationEmailsService(Planification_emailsRepository planificationEmailsRepository, CompteConfigRepository compteConfigRepository) {
         this.planificationEmailsRepository = planificationEmailsRepository;
+        this.compteConfigRepository = compteConfigRepository;
     }
 
     /**
@@ -77,14 +63,7 @@ public class PlanificationEmailsService {
         System.out.println(ListePlanif);
         for (Planification_emails planificationEmails : ListePlanif) {
             String date = planificationEmails.getDatePlanif();
-
-            //DateTimeFormatter formatter = DateTimeFormatter.forPattern("yyyy-MM-dd'T'HH:mm");
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-//            String text = date.format(String.valueOf(formatter));
-//            LocalDateTime parsedDate = LocalDateTime.parse(text, formatter);
             LocalDateTime dateTime = LocalDateTime.parse(date);
-            System.out.println("date d'envoi" + planificationEmails.getPlanifName() + dateTime);
-
             LocalDateTime today=LocalDateTime.now();
             ZoneId timeZone=ZoneId.of("Europe/Paris");
             ZonedDateTime todayWithTimeZone=ZonedDateTime.of(today, timeZone);
@@ -92,29 +71,18 @@ public class PlanificationEmailsService {
             // DateTime now = org.joda.time.DateTime.now();
             System.out.println("date d'envoi avec timezone" + planificationEmails.getPlanifName() + dateTimeWithTimeZone);
             System.out.println("Current time with timezone" + planificationEmails.getPlanifName() + todayWithTimeZone);
-
             if ((dateTimeWithTimeZone.isBefore(todayWithTimeZone)) && (planificationEmails.getStatus().equals("Non envoyée"))) {
                 System.out.println(planificationEmails.getStatus());
-                Properties props = new Properties();
-                props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable", "true");
-                props.put("mail.smtp.host", "smtp.gmail.com");
-                props.put("mail.smtp.port", "587");
-                props.put("mail.debug", "true");
-                Session session = Session.getInstance(props,
-                    new Authenticator() {
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication("******","*****");
-                        }
-                    });
+               CompteConfig compteConfig = compteConfigRepository.findAll().get(0);
 
+                System.out.println("compteConfig" + compteConfig);
+               Session session = new AppConfig().getAppconfig(compteConfig );
+                System.out.println("session data" + session);
                 try {
                     MimeMessage msg = new MimeMessage(session);
-                    msg.setFrom(planificationEmails.getExpediteur());
+                  //  msg.setFrom(planificationEmails.getExpediteur());
                     msg.setRecipients(Message.RecipientType.TO, planificationEmails.getDestinataire());
                     msg.setSubject(planificationEmails.getPlanifForEmail().getObjet());
-                   // msg.setSentDate(DateTime);
-
                     Multipart multipart = new MimeMultipart();
 
                     MimeBodyPart htmlPart = new MimeBodyPart();
@@ -135,13 +103,6 @@ public class PlanificationEmailsService {
                 planificationEmails.setStatus("Envoyée");
                 planificationEmailsRepository.save(planificationEmails);
             }
-                //     mailMsg.setSentDate(planificationEmails.getDatePlanif().);
-                //FileSystemResource object for Attachment
-
-
-//            System.out.println("---Done---");
-//            return ResponseEntity.ok(planificationEmails);
-                // return mimeMessage;
             }
         }
     /**

@@ -1,0 +1,22 @@
+{
+    "smartNewsletterApp": {
+        "compteConfig" : {
+            "home": {
+                "title": "La configuration de votre application",
+                "createLabel": "Ajouter la configuration de votre application",
+                "createOrEditLabel": "Ajouter ou créer la configuration de votre application"
+            },
+            "created": "Un nouveau Compte de configuration a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Compte de configuration avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Compte de configuration avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Compte de configuration {{ id }} ?"
+            },
+            "detail": {
+                "title": "La configuration de votre application"
+            },
+            "email": "Email",
+            "password": "Password"
+        }
+    }
+}

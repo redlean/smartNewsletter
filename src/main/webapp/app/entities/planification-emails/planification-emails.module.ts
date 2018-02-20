@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { SmartNewsletterSharedModule } from '../../shared';
 import {
     Planification_emailsService,
@@ -15,6 +14,7 @@ import {
     planification_emailsPopupRoute,
     Planification_emailsResolvePagingParams,
 } from './';
+// import {DemoUtilsModule} from "../../home/calendar/demo-utils.module";
 
 const ENTITY_STATES = [
     ...planification_emailsRoute,
@@ -32,7 +32,7 @@ const ENTITY_STATES = [
         Planification_emailsDialogComponent,
         Planification_emailsDeleteDialogComponent,
         Planification_emailsPopupComponent,
-        Planification_emailsDeletePopupComponent,
+        Planification_emailsDeletePopupComponent
     ],
     entryComponents: [
         Planification_emailsComponent,

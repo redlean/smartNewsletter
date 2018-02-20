@@ -4,29 +4,19 @@ import com.codahale.metrics.annotation.Timed;
 import com.redlean.news.domain.Planification_emails;
 
 import com.redlean.news.repository.Planification_emailsRepository;
-import com.redlean.news.service.AppConfig;
-import com.redlean.news.service.PlanificationEmailsService;
 import com.redlean.news.web.rest.errors.BadRequestAlertException;
 import com.redlean.news.web.rest.util.HeaderUtil;
 import com.redlean.news.web.rest.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -41,23 +31,16 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class Planification_emailsResource {
 
-//    private final Logger log = LoggerFactory.getLogger(Planification_emailsResource.class);
-//
-//    private static final String ENTITY_NAME = "planification_emails";
-//    private final Planification_emailsRepository planification_emailsRepository;
-//
-//    public Planification_emailsResource(Planification_emailsRepository planification_emailsRepository ) {
-//        this.planification_emailsRepository = planification_emailsRepository;
-//    }
     private final Logger log = LoggerFactory.getLogger(Planification_emailsResource.class);
 
-    private static final String ENTITY_NAME = "planificationEmails";
+    private static final String ENTITY_NAME = "planification_emails";
 
-    private final PlanificationEmailsService planificationEmailsService;
+    private final Planification_emailsRepository planification_emailsRepository;
 
-    public Planification_emailsResource(PlanificationEmailsService planificationEmailsService) {
-        this.planificationEmailsService = planificationEmailsService;
+    public Planification_emailsResource(Planification_emailsRepository planification_emailsRepository) {
+        this.planification_emailsRepository = planification_emailsRepository;
     }
+
     /**
      * POST  /planification-emails : Create a new planification_emails.
      *
@@ -72,8 +55,7 @@ public class Planification_emailsResource {
         if (planification_emails.getId() != null) {
             throw new BadRequestAlertException("A new planification_emails cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Planification_emails result = planificationEmailsService.save(planification_emails);
-      //SendMailInDate();
+        Planification_emails result = planification_emailsRepository.save(planification_emails);
         return ResponseEntity.created(new URI("/api/planification-emails/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -95,8 +77,7 @@ public class Planification_emailsResource {
         if (planification_emails.getId() == null) {
             return createPlanification_emails(planification_emails);
         }
-        Planification_emails result = planificationEmailsService.save(planification_emails);
-       //this.SendMailInDate();
+        Planification_emails result = planification_emailsRepository.save(planification_emails);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, planification_emails.getId().toString()))
             .body(result);
@@ -112,9 +93,8 @@ public class Planification_emailsResource {
     @Timed
     public ResponseEntity<List<Planification_emails>> getAllPlanification_emails(Pageable pageable) {
         log.debug("REST request to get a page of Planification_emails");
-        Page<Planification_emails> page = planificationEmailsService.findAll(pageable);
+        Page<Planification_emails> page = planification_emailsRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/planification-emails");
-        //this.SendMailInDate();
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
@@ -128,8 +108,7 @@ public class Planification_emailsResource {
     @Timed
     public ResponseEntity<Planification_emails> getPlanification_emails(@PathVariable Long id) {
         log.debug("REST request to get Planification_emails : {}", id);
-      //  this.SendMailInDate();
-        Planification_emails planification_emails = planificationEmailsService.findOne(id);
+        Planification_emails planification_emails = planification_emailsRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(planification_emails));
     }
 
@@ -143,9 +122,7 @@ public class Planification_emailsResource {
     @Timed
     public ResponseEntity<Void> deletePlanification_emails(@PathVariable Long id) {
         log.debug("REST request to delete Planification_emails : {}", id);
-        planificationEmailsService.delete(id);
+        planification_emailsRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
-
 }

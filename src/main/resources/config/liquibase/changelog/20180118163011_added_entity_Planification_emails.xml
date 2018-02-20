@@ -25,16 +25,12 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="expediteur" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
             <column name="destinataire" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
             <column name="status" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="date_planif" type="varchar(255)">
