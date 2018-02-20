@@ -24,27 +24,34 @@
     <!--<div *ngIf="clicked; else Show">-->
 
     <ng-template #Show>
-        <div *ngFor="let compteConfig of compteConfigs ;trackBy: trackId">
+        <div *ngFor="let compteConfig of compteConfigs ;trackBy: trackId" style="text-align: center">
+            <table class="table" style="width: auto">
+                <thead>
+                <th jhiTranslate="smartNewsletterApp.compteConfig.email">Email :</th>
+                </thead>
+                <tbody>
+                <td>
+                    <span>{{compteConfig.email}}</span>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'compte-config/'+ compteConfig.id + '/edit'} }]"
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'compte-config/'+ compteConfig.id + '/delete'} }]"
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-danger btn-sm">
+                        <span class="fa fa-remove"></span>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                </td>
+                </tbody>
+            </table>
 
-            <span jhiTranslate="smartNewsletterApp.compteConfig.email">Email</span>
-            <span>{{compteConfig.email}}</span>
-
-            <button type="submit"
-                    [routerLink]="['/', { outlets: { popup: 'compte-config/'+ compteConfig.id + '/edit'} }]"
-                    replaceUrl="true"
-                    queryParamsHandling="merge"
-                    class="btn btn-primary btn-sm">
-                <span class="fa fa-pencil"></span>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-            </button>
-            <button type="submit"
-                    [routerLink]="['/', { outlets: { popup: 'compte-config/'+ compteConfig.id + '/delete'} }]"
-                    replaceUrl="true"
-                    queryParamsHandling="merge"
-                    class="btn btn-danger btn-sm">
-                <span class="fa fa-remove"></span>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-            </button>
         </div>
     </ng-template>
 </div>

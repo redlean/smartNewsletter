@@ -33,12 +33,18 @@
             <label class="form-control-label" jhiTranslate="smartNewsletterApp.planification_emails.datePlanif" for="field_datePlanif">Date d'envoi</label>
             <!--<input type="text" class="form-control" name="datePlanif" id="field_datePlanif"-->
                 <!--[(ngModel)]="planification_emails.datePlanif" required/>-->
-            <input type="datetime-local" placeholder="yyyy-MM-ddTHH:mm:ss" class="form-control" name="datePlanif" id="field_datePlanif"
-                   [(ngModel)]="planification_emails.datePlanif" required/>
+            <input  [ngStyle]="{'border-left': ValidateDate(editForm.value.datePlanif) === true ? '5px solid green' : '5px solid red' }" type="datetime-local" placeholder="yyyy-MM-ddTHH:mm:ss" class="form-control" name="datePlanif" id="field_datePlanif"
+                   [(ngModel)]="planification_emails.datePlanif"
+                              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required/>
             <div [hidden]="!(editForm.controls.datePlanif?.dirty && editForm.controls.datePlanif?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.datePlanif?.errors?.required" jhiTranslate="entity.validation.required">
                    This field is required.
+                </small>
+            </div>
+            <div *ngIf="editForm.controls.planifForEmail?.valid && ValidateDate(editForm.value.datePlanif)== false">
+                <small class="form-text text-danger">
+                    Veuillez vérifier la date d'envoi de l'e-mail.
                 </small>
             </div>
         </div>
@@ -60,7 +66,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving || ValidateDate(editForm.value.datePlanif) == false" class="btn btn-primary">
             <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>

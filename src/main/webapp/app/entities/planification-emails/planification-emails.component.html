@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="smartNewsletterApp.planification_emails.home.title">Planification Emails</span>
-        <button class="btn btn-primary float-right jh-create-entity create-planification-emails" [routerLink]="['/', { outlets: { popup: ['planification-emails-new'] } }]">
+        <button [disabled]="compteConfigs?.length == 0" class="btn btn-primary float-right jh-create-entity create-planification-emails" [routerLink]="['/', { outlets: { popup: ['planification-emails-new'] } }]">
             <span class="fa fa-plus"></span>
             <span  jhiTranslate="smartNewsletterApp.planification_emails.home.createLabel">
             Create new Planification Emails
@@ -9,6 +9,9 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
+    <div class="alert alert-danger" *ngIf="compteConfigs?.length == 0">
+        <strong>Veuillez ajouter la configuration de votre application avant que vous planifiez l'envoi des e-mails</strong>
+    </div>
     <div class="row">
     </div>
     <br/>
@@ -45,7 +48,7 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button [disabled]="compteConfigs?.length == 0" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'planification-emails/'+ planification_emails.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

@@ -6,6 +6,8 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { Planification_emails } from './planification-emails.model';
 import { Planification_emailsService } from './planification-emails.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import {CompteConfig} from "../compte-config/compte-config.model";
+import {CompteConfigService} from "../compte-config/compte-config.service";
 
 @Component({
     selector: 'jhi-planification-emails',
@@ -27,9 +29,10 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
-
+    compteConfigs: CompteConfig[];
     constructor(
         private planification_emailsService: Planification_emailsService,
+        private compteConfigService: CompteConfigService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -43,6 +46,12 @@ currentAccount: any;
             this.previousPage = data.pagingParams.page;
             this.reverse = data.pagingParams.ascending;
             this.predicate = data.pagingParams.predicate;
+            this.compteConfigService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.compteConfigs = res.json;
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
         });
     }
 

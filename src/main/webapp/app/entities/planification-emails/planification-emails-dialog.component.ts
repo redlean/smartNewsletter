@@ -17,10 +17,10 @@ import { ResponseWrapper } from '../../shared';
     templateUrl: './planification-emails-dialog.component.html'
 })
 export class Planification_emailsDialogComponent implements OnInit {
-
+    public min = new Date();
     planification_emails: Planification_emails;
     isSaving: boolean;
-
+    isValidate: boolean = false;
     emails: Email[];
 
     constructor(
@@ -31,9 +31,28 @@ export class Planification_emailsDialogComponent implements OnInit {
         private eventManager: JhiEventManager
     ) {
     }
+    ValidateDate( date : any){
+        console.log(this.min);
+        let dateSaisie = new Date(date);
+       console.log(dateSaisie > this.min);
+        if (dateSaisie > this.min){
+            this.isValidate = true;
+        }
+        else {
+            this.isValidate = false;
 
+        }
+        return this.isValidate;
+    }
     ngOnInit() {
+        // console.log(this.min);
+        // console.log(this.min.getDate());
+        // console.log((this.min.getMonth()+1));
+        // console.log(this.min.getFullYear());
+        // console.log(this.min.getHours());
+        // console.log(this.min.getMinutes());
         this.isSaving = false;
+        console.log(typeof this.planification_emails.datePlanif);
         this.planification_emails.status = "Non envoyée";
         this.emailService.query()
             .subscribe((res: ResponseWrapper) => { this.emails = res.json; }, (res: ResponseWrapper) => this.onError(res.json));

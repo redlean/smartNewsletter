@@ -37,6 +37,7 @@
     "languages": [
       "fr",
       "en"
-    ]
+    ],
+    "herokuAppName": "smart-newsletter-redlean"
   }
 }
