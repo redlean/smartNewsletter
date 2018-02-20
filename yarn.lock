@@ -29,7 +29,7 @@
     minimist "^1.2.0"
     rxjs "^5.5.6"
 
-"@angular/animations@^5.2.5":
+"@angular/animations@5.2.5":
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.2.5.tgz#3e72184321c4979305619c74902b8be92d76db70"
   dependencies:

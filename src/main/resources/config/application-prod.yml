@@ -25,7 +25,7 @@ spring:
             enabled: false
         livereload:
             enabled: false
-    datasource:
+datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://ec2-79-125-117-53.eu-west-1.compute.amazonaws.com:5432/d2j1brfdi5klq9?sslmode=require&user=jvuvatsvqbmbck&password=0b0f6da266cb082f1a705772d2485757bf54aa79968f106b77909644c5b401da
          username: jvuvatsvqbmbck
