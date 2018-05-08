@@ -10,10 +10,15 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.util.Properties;
 
+import static com.redlean.news.service.PlanificationEmailsService.decrypt;
+import static com.redlean.news.service.PlanificationEmailsService.encrypt;
+
 @Configurable
 public class AppConfig {
     @Bean
     public Session getAppconfig(CompteConfig compteConfig ) {
+        String key = "Bar12345Bar12345"; // 128 bit key
+        String initVector = "RandomInitVector"; // 16 bytes IV
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -23,7 +28,7 @@ public class AppConfig {
         Session session = Session.getInstance(props,
             new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(compteConfig.getEmail(), compteConfig.getPassword());
+                    return new PasswordAuthentication(compteConfig.getEmail(), decrypt(key, initVector, compteConfig.getPassword()));
                 }
             });
         return session;
