@@ -27,9 +27,9 @@ spring:
             enabled: false
 datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://ec2-79-125-110-209.eu-west-1.compute.amazonaws.com:5432/d52ek335ti8126?sslmode=require&user=iymnhslgabjrrs&password=8cbb7525310d7d13a57d9cc06c19a5441ee01e0fffe133a034d58347d6584552
-         username: iymnhslgabjrrs
-         password: 8cbb7525310d7d13a57d9cc06c19a5441ee01e0fffe133a034d58347d6584552
+        url: jdbc:postgresql://ec2-54-195-246-59.eu-west-1.compute.amazonaws.com:5432/d9va37d9kfghuf?sslmode=require&user=estlgjttzpzplx&password=946e63c60ee37eec25548b25248c4bcc410f9bee12c82d642950c884deb6b6a0
+         username: estlgjttzpzplx
+         password: 946e63c60ee37eec25548b25248c4bcc410f9bee12c82d642950c884deb6b6a0
 
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
