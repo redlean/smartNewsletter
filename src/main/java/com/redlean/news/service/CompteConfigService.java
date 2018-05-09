@@ -20,12 +20,17 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import static com.redlean.news.service.PlanificationEmailsService.encrypt;
+
 /**
  * Service Implementation for managing CompteConfig.
  */
 @Service
 @Transactional
 public class CompteConfigService {
+
+    String key = "Bar12345Bar12345"; // 128 bit key
+    String initVector = "RandomInitVector"; // 16 bytes IV
 
     private final Logger log = LoggerFactory.getLogger(CompteConfigService.class);
 
@@ -101,12 +106,12 @@ public class CompteConfigService {
             MimeBodyPart htmlPart = new MimeBodyPart();
             String htmlContent = "<p>Madame, Monsieur,</p>\n" +
                 "\n" +
-                "<p>Vous avez configurez l&#39;envoi des e-mails de l&#39;application<span style=\"color:#0000ff\"><span style=\"font-size:16px\"><strong> </strong></span><span style=\"font-size:14px\"><strong>&quot;Smart Newsletter&quot;</strong></span><span style=\"font-size:16px\"><strong> </strong></span></span>par votre compte.</p>\n" +
-                "\n" +
-                "<p>Veuillez cliquer sur le lien suivant pour acc&eacute;der &agrave; l&#39;application<strong><span style=\"color:#0000ff\"><span style=\"font-size:14px\"> &quot;Smart Newsletter&quot;</span></span></strong> :&nbsp;<a href=\"https://smart-newsletter.herokuapp.com\">https://smart-newsletter.herokuapp.com</a></p>\n" +
+                "<p>Vous avez configurer l&#39;envoi des e-mails de l&#39;application<span style=\"color:#0000ff\"><span style=\"font-size:16px\"><strong> </strong></span><span style=\"font-size:14px\"><strong>&quot;Smart Newsletter&quot;</strong></span><span style=\"font-size:16px\"><strong> </strong></span></span>par votre compte.</p>\n" +
                 "\n" +
                 "<p>Cordialement,<br />\n" +
                 "\n" +
+
+                    "\n" +
                 "L&#39;&eacute;quipe de <strong><span style=\"color:#ff0000\">Red</span>lean</strong>.</p>\n" +
                 "\n" +
                 "<p><img alt=\"\" src=\"http://redlean.io/wp-content/uploads/2017/02/logo-Redlean-Services.png\" style=\"height:25px; width:100px\" /></p>\n";
@@ -131,16 +136,8 @@ public class CompteConfigService {
         }
     }
 
-//    public String digestMd5(final String password) {
-//        String base64;
-//        try {
-//            MessageDigest digest = MessageDigest.getInstance("MD5");
-//            digest.update(password.getBytes());
-//            base64 = new BASE64Encoder().encode(digest.digest());
-//        }
-//        catch (NoSuchAlgorithmException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return "{MD5}" + base64;
-//    }
 }
+
+
+// "<p>Veuillez cliquer sur le lien suivant pour acc&eacute;der &agrave; l&#39;application<strong><span style=\"color:#0000ff\"><span style=\"font-size:14px\"> &quot;Smart Newsletter&quot;</span></span></strong> :&nbsp;<a href=\"https://smart-newsletter.herokuapp.com\">https://smart-newsletter.herokuapp.com</a></p>\n" +
+//                "\n" +

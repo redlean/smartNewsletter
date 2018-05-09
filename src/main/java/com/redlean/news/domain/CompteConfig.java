@@ -10,6 +10,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
+import static com.redlean.news.service.PlanificationEmailsService.encrypt;
+
 /**
  * A CompteConfig.
  */
@@ -65,7 +67,9 @@ public class CompteConfig implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        String key = "Bar12345Bar12345"; // 128 bit key
+        String initVector = "RandomInitVector"; // 16 bytes IV
+        this.password = encrypt(key, initVector, password);
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

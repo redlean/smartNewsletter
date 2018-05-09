@@ -3,6 +3,7 @@ import com.redlean.news.domain.CompteConfig;
 import com.redlean.news.domain.Planification_emails;
 import com.redlean.news.repository.CompteConfigRepository;
 import com.redlean.news.repository.Planification_emailsRepository;
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +24,9 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.List;
-import java.util.Properties;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 
 /**
@@ -58,9 +61,8 @@ public class PlanificationEmailsService {
 
     @Scheduled(cron = "0 * * ? * *",zone = "Europe/Paris")
     public void SendMailInDate() {
-        System.out.println("---Done---");
         List<Planification_emails> ListePlanif = planificationEmailsRepository.findAll();
-        System.out.println(ListePlanif);
+      //  System.out.println(ListePlanif);
         for (Planification_emails planificationEmails : ListePlanif) {
             String date = planificationEmails.getDatePlanif();
             LocalDateTime dateTime = LocalDateTime.parse(date);
@@ -69,15 +71,14 @@ public class PlanificationEmailsService {
             ZonedDateTime todayWithTimeZone=ZonedDateTime.of(today, timeZone);
             ZonedDateTime dateTimeWithTimeZone=ZonedDateTime.of(dateTime, timeZone);
             // DateTime now = org.joda.time.DateTime.now();
-            System.out.println("date d'envoi avec timezone" + planificationEmails.getPlanifName() + dateTimeWithTimeZone);
-            System.out.println("Current time with timezone" + planificationEmails.getPlanifName() + todayWithTimeZone);
-            if ((dateTimeWithTimeZone.isBefore(todayWithTimeZone)) && (planificationEmails.getStatus().equals("Non envoyée"))) {
-                System.out.println(planificationEmails.getStatus());
-               CompteConfig compteConfig = compteConfigRepository.findAll().get(0);
+     //       System.out.println("date d'envoi avec timezone" + planificationEmails.getPlanifName() + dateTimeWithTimeZone);
+         //   System.out.println("Current time with timezone" + planificationEmails.getPlanifName() + todayWithTimeZone);
 
-                System.out.println("compteConfig" + compteConfig);
-               Session session = new AppConfig().getAppconfig(compteConfig );
-                System.out.println("session data" + session);
+            CompteConfig compteConfig = compteConfigRepository.findAll().get(0);
+
+            Session session = new AppConfig().getAppconfig(compteConfig );
+
+            if ((dateTimeWithTimeZone.isBefore(todayWithTimeZone)) && (planificationEmails.getStatus().equals("Non envoyée"))) {
                 try {
                     MimeMessage msg = new MimeMessage(session);
                   //  msg.setFrom(planificationEmails.getExpediteur());
@@ -141,24 +142,40 @@ public class PlanificationEmailsService {
         planificationEmailsRepository.delete(id);
     }
 
-//    public void SendMailwithAttachment() throws MessagingException {
-//            AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-//            ctx.register(AppConfig.class);
-//            ctx.refresh();
-//            JavaMailSenderImpl mailSender = ctx.getBean(JavaMailSenderImpl.class);
-//            MimeMessage mimeMessage = mailSender.createMimeMessage();
-//            //Pass true flag for multipart message
-//            MimeMessageHelper mailMsg = new MimeMessageHelper(mimeMessage, true);
-//            mailMsg.setFrom("arvindraivns02@gmail.com");
-//            mailMsg.setTo("arvindraivns03@gmail.com");
-//            mailMsg.setSubject("Test mail with Attachment");
-//            mailMsg.setText("Please find Attachment.");
-//            //FileSystemResource object for Attachment
-//            FileSystemResource file = new FileSystemResource(new File("D:/cp/pic.jpg"));
-//            mailMsg.addAttachment("myPic.jpg", file);
-//            mailSender.send(mimeMessage);
-//            System.out.println("---Done---");
-//        }
+    public static String encrypt(String key, String initVector, String value) {
+        try {
+            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+
+            byte[] encrypted = cipher.doFinal(value.getBytes());
+            return Base64.encodeBase64String(encrypted);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static String decrypt(String key, String initVector, String encrypted) {
+        try {
+            IvParameterSpec iv = new IvParameterSpec(initVector.getBytes("UTF-8"));
+            SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
+
+            byte[] original = cipher.doFinal(Base64.decodeBase64(encrypted));
+
+            return new String(original);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
 
 }
   /* AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
