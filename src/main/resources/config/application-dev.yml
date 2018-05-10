@@ -35,6 +35,11 @@ spring:
         url: jdbc:postgresql://localhost:5432/SmartNewsletterDB
         username: postgres
         password: root
+
+#        url: jdbc:postgresql://ec2-54-195-246-59.eu-west-1.compute.amazonaws.com:5432/d9va37d9kfghuf?sslmode=require&user=estlgjttzpzplx&password=946e63c60ee37eec25548b25248c4bcc410f9bee12c82d642950c884deb6b6a0
+#        username: estlgjttzpzplx
+#        password: 946e63c60ee37eec25548b25248c4bcc410f9bee12c82d642950c884deb6b6a0
+
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
